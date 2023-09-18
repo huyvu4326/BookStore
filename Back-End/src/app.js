@@ -1,7 +1,8 @@
 import express from "express";
 import productRouter from "./routes/product";
+import userRouter from "./routes/user"
 import categoryRouter from "./routes/category"
-import authRouter from "./routes/auth";
+import authorRouter from "./routes/author"
 import cors from "cors";
 import mongoose from "mongoose";
 
@@ -14,7 +15,8 @@ app.use(cors());
 // router
 app.use("/api", productRouter);
 app.use("/api", categoryRouter);
-app.use("/api", authRouter);
+app.use("/api", userRouter);
+app.use("/api", authorRouter)
 
 mongoose.connect("mongodb://127.0.0.1:27017/BookStore");
 
