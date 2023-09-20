@@ -7,7 +7,7 @@ const SignIn = (props: Props) => {
     <div>
          <div id="loginModal" className="modal">
                 <div className="form-resgiter">
-                    <span className="close-modal">&times;</span>
+                    {/* <span className="close-modal">&times;</span> */}
                     <div className="user-form-card">
                         <div className="btn-close-modal">
                             <i className="fas fa-times-circle" aria-hidden="true"></i>
@@ -17,7 +17,7 @@ const SignIn = (props: Props) => {
                         </div>
                         <form action="" data-url="" method="POST" role="form" id="formLogin_header" className="user-form">
                             <div id="loadListErrorLogin_header"></div>
-                            <input type="hidden" name="_token" value="gjmPos61b7DRU5xElNZnYCvJdhINlsoGJKdnAVDJ"/>
+                            <input type="hidden" name="_token" value=""/>
                             <div className="form-group">
                                 <input type="text" name="username" value="" className="form-control" placeholder="Tên đăng nhập"/>
                             </div>
