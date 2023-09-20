@@ -17,7 +17,7 @@ const AddBook = (props: Props) => {
     addProduct(value)
     .then((response) => {
       console.log("Thêm sản phẩm thành công:", response.data);
-      navigate("/admin/list-products");
+      navigate("/admin/list-book");
     })
     .catch((error) => {
       console.error("Lỗi khi thêm sản phẩm:", error);

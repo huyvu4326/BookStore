@@ -28,7 +28,7 @@ const EditCate = (props: Props) => {
        name: data.name,
        description: data.description,
      };
-     updateCategory(id, update)
+     updateCategory(update)
        .then((response) => {
          console.log("Danh mục đã được cập nhật:", response.data);
        })

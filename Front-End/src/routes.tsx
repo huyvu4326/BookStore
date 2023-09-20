@@ -10,8 +10,42 @@ import EditCate from "./component/admin/cate-book/EditCate";
 import ListAuthor from "./component/admin/author/ListAuthor";
 import AddAuthor from "./component/admin/author/AddAuthor";
 import EditAuthor from "./component/admin/author/EditAuthor";
+import WebsiteLayout from "./component/client/WebsiteLayout";
+import Sidebar from "./component/client/Sidebar";
+import ProductList from "./component/client/ProductList";
+import Cart from "./component/client/Cart";
+import CateBook from "./component/client/CateBook";
+import SignIn from "./component/client/SignIn";
 
 export const router = createBrowserRouter ([
+    {
+        path: "/login",
+        element: <SignIn/>
+    },
+    {
+        path: "/",
+        element: <WebsiteLayout/>,
+        children: [
+            {index: true, element: <Navigate to="home"/>},
+            {
+                path: "home",
+                element: (
+                    <>
+                        <Sidebar />
+                        <ProductList />
+                    </>
+                ),
+            },
+            {
+                path: "cart",
+                element: <Cart/>
+            },
+            {
+                path: "category",
+                element: <CateBook/>
+            }
+        ]
+    },
     {
         path: "/admin",
         element: <AdminLayout />,
@@ -54,7 +88,7 @@ export const router = createBrowserRouter ([
                 element: <AddAuthor/>
             },
             {
-                path: "edit-author",
+                path: "edit-author/:id",
                 element: <EditAuthor/>
             },
         ]

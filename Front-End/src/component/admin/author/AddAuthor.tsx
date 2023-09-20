@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { addAuthor } from '../../../api/author';
 
 type Props = {}
 
 const AddAuthor = (props: Props) => {
+   const [authors, setAuthors] = useState([])
+   const navigate = useNavigate();
+   const {register,handleSubmit}=useForm()
+   const onSubmit=(value)=>{
+     console.log(value);
+     addAuthor(value)
+     .then((response) => {
+       console.log("Thêm tác giả thành công:", response.data);
+       navigate("/admin/list-author");
+     })
+     .catch((error) => {
+       console.error("Lỗi khi thêm tác giả:", error);
+     });
+   }
   return (
     <div>
         <div id="content-page" className="content-page">
@@ -16,12 +33,12 @@ const AddAuthor = (props: Props) => {
                            </div>
                         </div>
                         <div className="iq-card-body">
-                           <form action="admin-author.html">
+                           <form onSubmit={handleSubmit(onSubmit)}>
                               <div className="form-group">
                                  <label>Tên tác giả:</label>
-                                 <input type="text" className="form-control"/>
+                                 <input type="text" className="form-control"  {...register('name')}/>
                               </div>
-                              <div className="form-group">
+                              {/* <div className="form-group">
                                  <label>Hồ sơ tác giả:</label>
                                  <div className="custom-file">
                                     <input type="file" className="custom-file-input" id="customFile"/>
@@ -31,10 +48,10 @@ const AddAuthor = (props: Props) => {
                               <div className="form-group">
                                  <label>Email tác giả:</label>
                                  <input type="email" className="form-control"/>
-                              </div>
+                              </div> */}
                               <div className="form-group">
                                  <label>Nội dung:</label>
-                                 <textarea className="form-control" rows={4}></textarea>
+                                 <textarea className="form-control" rows={4}  {...register('description')}></textarea>
                               </div>
                               <button type="submit" className="btn btn-primary">Gửi</button>
                               <button type="reset" className="btn btn-danger">Trở lại</button>

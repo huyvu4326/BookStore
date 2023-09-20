@@ -56,15 +56,15 @@ export const create = async (req, res) => {
                 message: error.details[0].message,
             });
         }
-        const Author = await Author.create(body);
-        if (Author.length === 0) {
+        const data = await Author.create(body);
+        if (data.length === 0) {
             return res.status(400).json({
                 message: "Thêm tác giả thất bại",
             });
         }
         return res.status(200).json({
             message: "Thêm tác giả thành công",
-            Author,
+            data,
         });
     } catch (error) {
         return res.status(400).json({

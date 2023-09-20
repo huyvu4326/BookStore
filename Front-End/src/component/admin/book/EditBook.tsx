@@ -36,7 +36,7 @@ const EditBook = (props: Props) => {
       price: data.price,
       description: data.description,
     };
-    updateProduct(id, updatedProduct)
+    updateProduct(updatedProduct)
       .then((response) => {
         console.log("Sản phẩm đã được cập nhật:", response.data);
       })
