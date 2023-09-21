@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ICategory } from '../../../interface/category';
 import { useForm } from 'react-hook-form';
 import { getProductById, updateProduct } from '../../../api/book';
 import { getCategories } from '../../../api/category';
+import { message } from 'antd';
 type Props = {};
 const EditBook = (props: Props) => {
+  message.loading({ content: "Đang cập nhật sản phẩm...", key: "updateProduct" });
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const navigate = useNavigate();
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
     getProductById(id)
@@ -19,7 +22,8 @@ const EditBook = (props: Props) => {
         setValue("categoryId", response.data.categoryId);
         setValue("author", response.data.author);
         setValue("img", response.data.img);
-        setValue("price", response.data.price);
+        setValue("originalPrice", response.data.originalPrice);
+        setValue("promotionalPrice", response.data.promotionalPrice);
         setValue("description", response.data.description);
       })
       .catch((error) => {
@@ -33,15 +37,19 @@ const EditBook = (props: Props) => {
       categoryId: data.categoryId,
       author: data.author,
       img: data.img,
-      price: data.price,
+      originalPrice: data.originalPrice,
+      promotionalPrice: data.promotionalPrice,
       description: data.description,
     };
     updateProduct(updatedProduct)
       .then((response) => {
         console.log("Sản phẩm đã được cập nhật:", response.data);
+        navigate("/admin/list-book")
+        message.success({ content: "Cập nhật sản phẩm thành công!", key: "updateProduct", duration: 2 });
       })
       .catch((error) => {
         console.error("Lỗi khi cập nhật sản phẩm:", error);
+        message.error({ content: "Cập nhật sản phẩm không thành công.", key: "updateProduct", duration: 2 });
       });
   };
   useEffect(() => {
@@ -120,12 +128,21 @@ const EditBook = (props: Props) => {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="bookPrice">Giá sách:</label>{" "}
+                      <label htmlFor="bookPrice">Giá gốc:</label>{" "}
                       <input
                         type="text"
                         className="form-control"
                         id="bookPrice"
-                        {...register('price')}
+                        {...register('originalPrice')}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="bookPrice">Giá khuyến mãi:</label>{" "}
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bookPrice"
+                        {...register('promotionalPrice')}
                       />
                     </div>
                     <div className="form-group">

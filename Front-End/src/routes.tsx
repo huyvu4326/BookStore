@@ -16,11 +16,17 @@ import ProductList from "./component/client/ProductList";
 import Cart from "./component/client/Cart";
 import CateBook from "./component/client/CateBook";
 import SignIn from "./component/client/SignIn";
+import SignUp from "./component/client/SignUp";
+import ProductDetail from "./component/client/ProductDetail";
 
 export const router = createBrowserRouter ([
     {
-        path: "/login",
+        path: "/signin",
         element: <SignIn/>
+    },
+    {
+        path: "/signup",
+        element: <SignUp/>
     },
     {
         path: "/",
@@ -35,6 +41,10 @@ export const router = createBrowserRouter ([
                         <ProductList />
                     </>
                 ),
+            },
+            {
+                path: "detail",
+                element: <ProductDetail/>
             },
             {
                 path: "cart",

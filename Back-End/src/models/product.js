@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 import mongoosePaginate  from "mongoose-paginate-v2"
 const productSchema = mongoose.Schema(
   {
-    img: String,
+    imageUrl: {
+      type: String,
+      require: true
+    },
     name: {
       type: String,
       require: true,
@@ -20,8 +23,14 @@ const productSchema = mongoose.Schema(
       type: String,
       require: true
     },
-    price: String,
-    
+    originalPrice: {
+      type: String,
+      require: true
+    },
+    promotionalPrice: {
+      type: String,
+      require: true
+    }
   },
   { timestamps: true, versionKey: false }
 );

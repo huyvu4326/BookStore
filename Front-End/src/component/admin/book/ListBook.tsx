@@ -57,8 +57,8 @@ const ListBook = (props: Props) => {
                           <th style={{ width: "15%" }}>Thể loại sách</th>
                           <th style={{ width: "15%" }}>Tác giả sách</th>
                           <th style={{ width: "18%" }}>Mô tả sách</th>
-                          <th style={{ width: "7%" }}>Giá</th>
-                          <th style={{ width: "7%" }}>Sách PDF</th>
+                          <th style={{ width: "7%" }}>Giá gốc</th>
+                          <th style={{ width: "7%" }}>Giá khuyến mại</th>
                           <th style={{ width: "15%" }}>Hoạt động</th>
                         </tr>
                       </thead>
@@ -69,7 +69,7 @@ const ListBook = (props: Props) => {
                            <td>
                              <img
                                className="img-fluid rounded"
-                               src="../src/assets/images/browse-books/01.jpg"
+                               src={product.imageUrl}
                                alt=""
                              />
                            </td>
@@ -81,12 +81,8 @@ const ListBook = (props: Props) => {
                               {product.description}
                              </p>
                            </td>
-                           <td>{product.price}</td>
-                           <td>
-                             <a href="book-pdf.html">
-                               <i className="ri-file-fill text-secondary font-size-18"></i>
-                             </a>
-                           </td>
+                           <td>{product.originalPrice}</td>
+                           <td>{product.promotionalPrice}</td>
                            <td>
                              <div className="flex align-items-center list-user-action">
                                <a

@@ -3,12 +3,13 @@ import Product from "../models/product";
 import Category from "../models/category";
 
 const productSchema = Joi.object({
-    img: Joi.string().required(),
+    imageUrl: Joi.string().required(),
     name: Joi.string().required(),
     categoryId: Joi.string().required(),
     author: Joi.string().required(),
     description: Joi.string().required(),
-    price: Joi.number().required(),
+    originalPrice: Joi.number().required(),
+    promotionalPrice: Joi.number().required(),
 });
 
 export const getAll = async (req, res) => {

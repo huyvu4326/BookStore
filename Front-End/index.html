@@ -102,36 +102,6 @@
     <script src="/src/assets/js/chart-custom.js"></script>
     <!-- Custom JavaScript -->
     <script src="/src/assets/js/custom.js"></script>
-    <script>
-      // Lấy phần tử modal và nút đóng
-      var modal = document.getElementById("loginModal");
-      var closeButton = document.querySelector(".close-modal");
-      var signInButton = document.querySelector(".btn-sign_in");
-  
-      // Hàm để hiển thị modal
-      function showModal() {
-          modal.style.display = "block";
-      }
-  
-      // Hàm để ẩn modal
-      function hideModal() {
-          modal.style.display = "none";
-      }
-  
-      // Bắt sự kiện khi nhấp vào nút đăng nhập
-      signInButton.addEventListener("click", showModal);
-  
-      // Bắt sự kiện khi nhấp vào nút đóng
-      closeButton.addEventListener("click", hideModal);
-  
-      // Ẩn modal nếu người dùng nhấp bên ngoài nó
-      window.addEventListener("click", function (event) {
-          if (event.target == modal) {
-              hideModal();
-          }
-      });
-      closeButton.addEventListener("click", hideModal);
-  </script>
   <script>
     $('.slide_product').slick({
 dots: false,
@@ -215,6 +185,59 @@ responsive: [{
           }
       });
   }
+
+</script>
+<script type="text/javascript">
+    function Dangkynhanhang() {
+        $.ajax({
+            type: 'POST',
+            url: '/AjaxAPI/AjaxFeedBack.ashx',
+            data: 'Action=SaveRegisEmail1&Email=' + $('#hd_emailguihang').val() + '&ID=' + $('#hd_emailguihangproduc').val(),
+            success: function (html) {
+                if (html == "false") {
+
+                    window.alert('Có lỗi xảy ra bạn hãy thực hiện lại');
+                } else if (html == "true") {
+                    window.alert('Bạn đã gửi yêu cầu thành công!');
+                }
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    function SubmitRes() {
+        if ($('#review_title').val() == "") {
+            $("#review_title").focus();
+            return false;
+        }
+        if ($('#review_detail').val() == "") {
+            $("#review_detail").focus();
+            return false;
+        }
+        if (parseInt($('#rating_out').val()) == 0) {
+            alert('Xin vui lòng bình chọn sao');
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/AjaxAPI/AjaxFeedBack.ashx',
+            data: 'Action=SaveComnent&title=' + $('#review_title').val() + '&content=' + $('#review_detail').val() + '&sao=' + $('#rating_out').val() + '&ID=' + $('#productset_id').val(),
+            success: function (html) {
+                if (html == "false") {
+                    alert('Có lỗi xảy ra xin vui lòng thực hiện lại thao tác!');
+                }
+                else if (html == "true") {
+                    $('#review_title').val('');
+                    $('#review_detail').val('');
+                    $('#rating_out').val('');
+                    $('#starproduct').raty({
+                        number: 5,
+                    });
+                    alert('Bàn đã gửi nhận xét thành công!');
+                }
+            }
+        });
+    }
 
 </script>
 

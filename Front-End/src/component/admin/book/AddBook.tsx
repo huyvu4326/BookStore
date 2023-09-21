@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import { ICategory } from "../../../interface/category";
 import { useNavigate } from "react-router-dom";
 import { getCategories } from "../../../api/category";
-import { addProduct, getProducts } from "../../../api/book";
-import {useForm  } from "react-hook-form";
+import { addProduct } from "../../../api/book";
+import { useForm } from "react-hook-form";
+import { message } from "antd";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 type Props = {};
 
-const AddBook = (props: Props) => {
-  const [products, setProducts] = useState([])
+const AddBook = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const navigate = useNavigate();
-  const {register,handleSubmit}=useForm()
-  const onSubmit=(value)=>{
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (value) => {
     console.log(value);
-    
-    addProduct(value)
-    .then((response) => {
-      console.log("Thêm sản phẩm thành công:", response.data);
-      navigate("/admin/list-book");
-    })
-    .catch((error) => {
-      console.error("Lỗi khi thêm sản phẩm:", error);
-    });
-  }
+    addProduct({...value, imageUrl: uploadedImageUrl })
+      .then((response) => {
+        console.log("Thêm sản phẩm thành công:", response.data);
+        navigate("/admin/list-book");
+        message.success("Thêm sản phẩm thành công!");
+      })
+      .catch((error) => {
+        console.error("Lỗi khi thêm sản phẩm:", error);
+        message.error("Thêm sản phẩm thất bại!");
+      });
+  };
   useEffect(() => {
     getCategories()
       .then((response) => {
@@ -33,6 +36,33 @@ const AddBook = (props: Props) => {
       });
   }, []);
 
+  const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const onImageUpload = (imageUrl) => {
+    // Xử lý khi ảnh đã được tải lên thành công.
+    console.log("Ảnh đã được tải lên:", imageUrl);
+  };
+  const handleDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setIsLoading(true);
+    axios
+      .post(
+        "https://api.imgbb.com/1/upload?key=0aa0e3b122d3aa3b78f125147abc69e5",
+        formData
+      )
+      .then((response) => {
+        setUploadedImageUrl(response.data.data.url);
+        onImageUpload(response.data.data.url);
+      })
+      .catch((error) => {
+        console.error("Lỗi khi tải ảnh lên:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
   return (
     <div
       className="d-flex justify-content-center align-items-center"
@@ -56,7 +86,7 @@ const AddBook = (props: Props) => {
                         type="text"
                         className="form-control"
                         id="bookName"
-                        {...register('name')}
+                        {...register("name")}
                       />
                     </div>
                     <div className="form-group">
@@ -64,17 +94,14 @@ const AddBook = (props: Props) => {
                       <select
                         id="bookCategory"
                         className="form-control"
-                        {...register('categoryId')}
+                        {...register("categoryId")}
                       >
                         <option value="" disabled>
                           Chọn danh mục sách
                         </option>
                         {categories &&
                           categories.map((category) => (
-                            <option
-                              key={category._id}
-                              value={category._id}
-                            >
+                            <option key={category._id} value={category._id}>
                               {category.name}
                             </option>
                           ))}
@@ -86,27 +113,41 @@ const AddBook = (props: Props) => {
                         type="text"
                         className="form-control"
                         id="bookAuthor"
-                        {...register('author')}
+                        {...register("author")}
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="bookImage">Hình ảnh:</label>
-                      <div className="custom-file">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="bookImage"
-                          {...register('img')}
-                        />
-                      </div>
+                    <div>
+                      <Dropzone onDrop={handleDrop} accept="image/*">
+                        {({ getRootProps, getInputProps }) => (
+                          <div {...getRootProps()} className="dropzone">
+                            <input {...getInputProps()} />
+                            {isLoading ? (
+                              <p>Đang tải ảnh lên...</p>
+                            ) : uploadedImageUrl ? (
+                              <img src={uploadedImageUrl} alt="Uploaded" />
+                            ) : (
+                              <p>Kéo và thả ảnh hoặc nhấn để chọn ảnh</p>
+                            )}
+                          </div>
+                        )}
+                      </Dropzone>
                     </div>
                     <div className="form-group">
-                      <label htmlFor="bookPrice">Giá sách:</label>{" "}
+                      <label htmlFor="bookPrice">Giá gốc:</label>{" "}
                       <input
                         type="text"
                         className="form-control"
                         id="bookPrice"
-                        {...register('price')}
+                        {...register("originalPrice")}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="bookPrice">Giá khuyến mại:</label>{" "}
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="bookPrice"
+                        {...register("promotionalPrice")}
                       />
                     </div>
                     <div className="form-group">
@@ -115,7 +156,7 @@ const AddBook = (props: Props) => {
                         className="form-control"
                         id="bookDescription"
                         rows={4}
-                        {...register('description')}
+                        {...register("description")}
                       ></textarea>{" "}
                     </div>
                     <button type="submit" className="btn btn-primary">

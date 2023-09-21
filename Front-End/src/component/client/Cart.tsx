@@ -5,7 +5,8 @@ type Props = {}
 const Cart = (props: Props) => {
   return (
     <div>
-        <div className="row">
+      <section className="container">
+      <div className="row">
         <div className="col-lg-7">
           <div className="note-cart">
             <span>Giỏ hàng của bạn</span>
@@ -110,6 +111,8 @@ const Cart = (props: Props) => {
           </div>
         </div>
       </div>
+      </section>
+        
     </div>
   )
 }
