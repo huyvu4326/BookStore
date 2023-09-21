@@ -7,8 +7,7 @@ const ProductList = (props: Props) => {
     <div>
       <div className="banner_home">
         <div className="row">
-          <div className="col-lg-3 col-md-3"></div>
-          <div className="col-lg-9 col-md-9">
+          <div className="col-lg-9 col-md-9 banner-s">
             <div className="image_banner">
               <img src="./src/assets/client-images/Banner.jpg" alt="" />
             </div>
