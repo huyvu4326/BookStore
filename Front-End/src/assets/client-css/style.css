@@ -2520,6 +2520,21 @@ button.single_add_to_cart_button {
 .model-login.active {
     display: block;
 }
+.model-login {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    z-index: 9999;
+
+    display: none;
+}
+.link_sign_in:hover .model-login {
+    display: block;
+}
+
+.model-logins {
+    display: none;
+}
 
 .overlay_model-login {
     position: absolute;
@@ -2546,14 +2561,6 @@ button.single_add_to_cart_button {
     display: block;
 }
 
-.box_model-login {
-    position: absolute;
-    width: 25%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 99;
-}
 
 .user-form-card {
     padding: 30px;
