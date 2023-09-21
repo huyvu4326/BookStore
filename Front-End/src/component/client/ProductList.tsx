@@ -5,6 +5,16 @@ type Props = {};
 const ProductList = (props: Props) => {
   return (
     <div>
+      <div className="banner_home">
+        <div className="row">
+          <div className="col-lg-3 col-md-3"></div>
+          <div className="col-lg-9 col-md-9">
+            <div className="image_banner">
+              <img src="./src/assets/client-images/Banner.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="col-lg-9 col-md-9">
         <div className="list-sp-home">
           <div className="title-list-sp-home">
@@ -34,7 +44,7 @@ const ProductList = (props: Props) => {
             </li>
           </ul>
         </div>
-        <div className="list-sp-home">
+        {/* <div className="list-sp-home">
           <div className="title-list-sp-home">
             <h3>Tiếng Anh</h3>
           </div>
@@ -381,7 +391,7 @@ const ProductList = (props: Props) => {
               </div>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -548,7 +548,7 @@ element.style {
     text-align: center;
 }
 span.sale-product {
-    background: rgba(0, 0, 0, 0) url(../images/sale-tag.png) no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url(.src/assets/client-images/sale-tag.png) no-repeat scroll 0 0;
     color: #fff;
     display: block;
     font-size: 13px;
@@ -1145,7 +1145,7 @@ button.single_add_to_cart_button {
     display: flex;
 }
 .sale-tag {
-    background: rgba(0, 0, 0, 0) url(../images/sale-tag.png) no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url(.src/assets/client-images/sale-tag.png) no-repeat scroll 0 0;
     color: #fff;
     display: block;
     font-size: 13px;
@@ -1806,7 +1806,7 @@ element.style {
     text-align: center;
 }
 span.sale-product {
-    background: rgba(0, 0, 0, 0) url(../images/sale-tag.png) no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url(.src/assets/client-images/sale-tag.png) no-repeat scroll 0 0;
     color: #fff;
     display: block;
     font-size: 13px;
@@ -2403,7 +2403,7 @@ button.single_add_to_cart_button {
     display: flex;
 }
 .sale-tag {
-    background: rgba(0, 0, 0, 0) url(../images/sale-tag.png) no-repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0) url(.src/assets/client-images/sale-tag.png) no-repeat scroll 0 0;
     color: #fff;
     display: block;
     font-size: 13px;

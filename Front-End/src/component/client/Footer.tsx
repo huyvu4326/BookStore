@@ -5,7 +5,8 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div>
-        <footer className="grid items-center gap-8 pb-8 pt-6 md:py-8">
+      <section className="section-footer container">
+      <footer className="grid items-center gap-8 pb-8 pt-6 md:py-8">
           <div className="logo-footer">
             <a href="/">
               <img src="/src/assets/client-images/logo1.png" alt="Địa chỉ cuối trang" />
@@ -166,19 +167,21 @@ const Footer = (props: Props) => {
                     <span>Được chứng nhận </span>
                     <img
                       className="img-responsive"
-                      src="/src/assets/client-images/bct.png"
+                      src="./src/assets/client-images/chungnhan.png"
                       alt="Được chứng nhận"
                     />
                   </a>
                   <a className="method-footer" href="#">
                     <span>Cách thức thanh toán</span>
-                    <img className="img-responsive" src="/src/assets/client-images/visa.jpg" />
+                    <img className="img-responsive" src="./src/assets/client-images/safe.jpg" />
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </footer>
+      </section>
+        
     </div>
   );
 };

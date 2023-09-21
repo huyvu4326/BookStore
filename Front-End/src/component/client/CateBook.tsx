@@ -35,7 +35,7 @@ const CateBook = (props: Props) => {
               <div className="box box-pro">
                 <div className="image">
                   <a href="">
-                    <img src="images/product-1.png" />
+                    <img src="./src/assets/client-images/product-1.png" />
                   </a>
                 </div>
                 <div className="info cart-item 60-0">
