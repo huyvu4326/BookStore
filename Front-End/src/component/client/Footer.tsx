@@ -5,7 +5,7 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <div>
-      <section className="section-footer container">
+      <section className="section-footer container" style={{display: 'flex'}}>
       <footer className="grid items-center gap-8 pb-8 pt-6 md:py-8">
           <div className="logo-footer">
             <a href="/">
