@@ -14,15 +14,12 @@ const AddBook = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (value) => {
-    console.log(value);
     addProduct({...value, imageUrl: uploadedImageUrl })
       .then((response) => {
-        console.log("Thêm sản phẩm thành công:", response.data);
         navigate("/admin/list-book");
         message.success("Thêm sản phẩm thành công!");
       })
       .catch((error) => {
-        console.error("Lỗi khi thêm sản phẩm:", error);
         message.error("Thêm sản phẩm thất bại!");
       });
   };
@@ -32,14 +29,12 @@ const AddBook = () => {
         setCategories(response.data);
       })
       .catch((error) => {
-        console.error("Lỗi khi lấy danh mục sách:", error);
       });
   }, []);
 
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const onImageUpload = (imageUrl) => {
-    // Xử lý khi ảnh đã được tải lên thành công.
     console.log("Ảnh đã được tải lên:", imageUrl);
   };
   const handleDrop = (acceptedFiles) => {
@@ -117,6 +112,7 @@ const AddBook = () => {
                       />
                     </div>
                     <div>
+                      
                       <Dropzone onDrop={handleDrop} accept="image/*">
                         {({ getRootProps, getInputProps }) => (
                           <div {...getRootProps()} className="dropzone">
