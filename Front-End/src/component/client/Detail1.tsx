@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProductById } from "../../api/book";
 
 type Props = {};
 
 const Detail_1 = (props: Props) => {
+  const { id } = useParams();
+  const [product, setProduct] = useState<any>({}); // Thay any bằng kiểu dữ liệu thích hợp
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(product.promotionalPrice);
+
+  useEffect(() => {
+    getProductById(id).then((response) => {
+      setProduct(response.data);
+      setTotalPrice(response.data.promotionalPrice * quantity);
+    });
+  }, [id, quantity]);
+
+  const increaseQuantity = () => {
+    if (quantity < 999) {
+      setQuantity(quantity + 1);
+      setTotalPrice((quantity + 1) * product.promotionalPrice);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      setTotalPrice((quantity - 1) * product.promotionalPrice);
+    }
+  };
+
   return (
     <div>
       <div className="section_4">
@@ -15,8 +43,8 @@ const Detail_1 = (props: Props) => {
                     <div className="img_item">
                       <img
                         className="img_clik_show"
-                        src="./src/assets/clent-images/anh-1.png"
-                        alt="https://cus11.largevendor.com/6000 từ vựng tiếng anh thông dụng (mềm)"
+                        src={product.imageUrl}
+                        alt=""
                       />
                     </div>
                   </div>
@@ -24,15 +52,13 @@ const Detail_1 = (props: Props) => {
                 <div className="col-12 col-lg-10 col-xl-10">
                   <div className="slider autoplay1-detail">
                     <div className="image">
-                      <a
-                        href="https://cus11.largevendor.com/storage/product/2/6000_t__v_ng_ti_ng_anhx280x340x2.png"
-                        data-fancybox="image"
-                      >
+                      <a href="" data-fancybox="image">
                         <img
+                          style={{ width: "500px", height: "500px" }}
                           className="expandedImg"
                           id="imageid"
-                          src="./src/assets/clent-images/product-1.png"
-                          alt="6000 từ vựng tiếng anh thông dụng (mềm)"
+                          src={product.imageUrl}
+                          // alt="6000 từ vựng tiếng anh thông dụng (mềm)"
                         />
                       </a>
                     </div>
@@ -57,7 +83,7 @@ const Detail_1 = (props: Props) => {
             </div>
 
             <div className="info_detail">
-              <h1>6000 từ vựng tiếng anh thông dụng (mềm)</h1>
+              <h1>{product.name}</h1>
               <div className="item-row1">
                 <div className="item_left">
                   <p>
@@ -92,13 +118,13 @@ const Detail_1 = (props: Props) => {
                     </div>
                   </div>
                   <p>
-                    Giá bìa: <span className="price_cost">85000 ₫</span>
+                    Giá bìa:{" "}
+                    <span className="price_cost">
+                      {product.originalPrice} ₫
+                    </span>
                   </p>
                   <p>
-                    Giá bán: <span className="price_km">63,750 ₫</span>
-                  </p>
-                  <p>
-                    Tiết kiệm: <span className="sale_tag">21,250 ₫(25%)</span>
+                    Giá bán: <span className="price_km">{totalPrice} ₫</span>
                   </p>
 
                   <p>
@@ -221,9 +247,7 @@ const Detail_1 = (props: Props) => {
                         color: "rgb(255, 0, 0)",
                         fontWeight: "bold",
                       }}
-                    >
-                      
-                    </span>
+                    ></span>
                     <span
                       style={{
                         padding: "0",
@@ -294,14 +318,16 @@ const Detail_1 = (props: Props) => {
               <div className="info_dt_payment floatl">
                 <div className="bdetail_no">
                   <span>Số lượng</span>
+                  <button onClick={decreaseQuantity}>-</button>
                   <input
                     type="text"
                     name="idsoluong"
                     id="idsoluong"
-                    value="1"
+                    value={quantity}
                     className="bd_book_no"
                     fdprocessedid="4y7ipg"
                   />
+                  <button onClick={increaseQuantity}>+</button>
                 </div>
                 <div className="bdetail_scart">
                   <button
@@ -327,17 +353,8 @@ const Detail_1 = (props: Props) => {
               <h3>Mô tả</h3>
             </div>
             <p>
-              Cuốn sách gồm 6.000 từ vựng tiếng Anh thông dụng phổ biến nhất,
-              trình bày có hệ thống, giúp người học hiểu khoảng 98% các tình
-              huống giao tiếp và sách báo thông thường. Có thể nói cuốn sách này
-              giống như chiếc chia khóa "vạn năng” giúp người học khám phá thế
-              giới Anh ngữ, cực kỳ phù hợp cho những bạn mới bắt đầu học, tiết
-              kiệm thời gian và nâng cao hiệu quả
+              {product.description}
             </p>
-            <p>-Tối ưu khả năng ghi nhớ qua mind map </p>
-            <p>- Chinh phục 6000 từ vựng thuộc 20 chủ đề phổ biến </p>
-            <p>-Từ điển dạng bỏ túi thuận tiện học tập mọi lúc, mọi nơi </p>
-            <p>-Nâng cao vốn từ vựng của học sinh, sinh viên</p>
             <div className="product-action-repeat">
               <button type="button" className="btn btn_checkout">
                 Thêm vào giỏ hàng

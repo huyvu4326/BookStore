@@ -5,11 +5,22 @@ type Props = {};
 
 const ProductList = (props: Props) => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]); 
   useEffect(() => {
     getProducts().then((response) => {
-      setProducts(response.data.docs)
-    })
-  },[])
+      setProducts(response.data.docs);
+    });
+  }, []);
+  const addToCart = (product) => {
+    const updatedCart = [...cart];
+    const existingProduct = updatedCart.find((item) => item._id === product._id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      updatedCart.push({ ...product, quantity: 1 });
+    }
+    setCart(updatedCart);
+  };
   return (
     <div>
       <div className="banner_home">
@@ -27,35 +38,32 @@ const ProductList = (props: Props) => {
             <h3></h3>
           </div>
           <ul className="list-noibat">
-          {products?.map((product, index) => (
-            <li key={product._id}>
-            <div className="product-home">
-              <div className="product_inner">
-                <a href="">
-                  <img
-                    src={product.imageUrl}
-                    alt="6000 từ vựng tiếng anh thông dụng (mềm)"
-                  />
-                </a>
-                <div className="product-name">
-                  <a href="">{product.name}</a>
+            {products?.map((product) => (
+              <li key={product._id}>
+                <div className="product-home">
+                  <div className="product_inner">
+                    <a href={`books/${product._id}/detail`}>
+                      <img
+                        src={product.imageUrl}
+                        alt=""
+                      />
+                    </a>
+                    <div className="product-name">
+                      <a href={`books/${product._id}/detail`}>{product.name}</a>
+                    </div>
+                    <div className="add-cart">
+                      <p className="price-new">
+                        {product.promotionalPrice}đ
+                        <span className="price-old">
+                          {product.originalPrice}đ
+                        </span>
+                      </p>
+                      <button className="btn btn-primary" onClick={() => addToCart(product)}>Add to Cart</button>
+                    </div>
+                  </div>
                 </div>
-                <div className="add-cart">
-                <p className="price-new">
-                  {product.promotionalPrice}đ
-                  <span className="price-old">{product.originalPrice}đ</span>
-                </p>
-                <button
-                    className="btn btn-primary"
-                  >
-                    Add to Cart
-                </button>
-                </div>
-              </div>
-            </div>
-          </li>
-          ))}
-            
+              </li>
+            ))}
           </ul>
         </div>
       </div>

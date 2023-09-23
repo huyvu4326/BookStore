@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -21,14 +22,14 @@ const Header = (props: Props) => {
                   type="text"
                   name="keyword"
                   placeholder="Bạn muốn tìm sản phẩm"
-                  required=""
-                  fdprocessedid="d883u"
+                  // required=""
+                  // fdprocessedid="d883u"
                 />
                 <button
                   className="btn-search-color"
                   type="submit"
                   name="submit"
-                  fdprocessedid="vtnjdm"
+                  // fdprocessedid="vtnjdm"
                 >
                   Tìm
                 </button>
@@ -45,11 +46,11 @@ const Header = (props: Props) => {
               <a href="tel:0907009789">0907009789</a>
             </div>
           </div>
-
           <ul className="icon-navbar">
             <li className="link-mxh">
-              <a className="box-cart" href="cart">
-                <i className="fas fa-shopping-cart" aria-hidden="true"></i>
+              <a className="box-cart" >
+                
+                <Link to="cart"><i className="fas fa-shopping-cart" aria-hidden="true"></i></Link>
                 <p className="count-cart cart"> 0 </p>
               </a>
             </li>
@@ -87,7 +88,7 @@ const Header = (props: Props) => {
         <div className="menu menu-desktop">
           <ul className="left_menu">
             <li>
-              <a href="home">TRANG CHỦ</a>
+              <a href="/">TRANG CHỦ</a>
             </li>
             <li>
               <a href="">GIỚI THIỆU</a>
