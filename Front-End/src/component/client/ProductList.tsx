@@ -33,7 +33,7 @@ const ProductList = (props: Props) => {
               <div className="product_inner">
                 <a href="">
                   <img
-                    src="/src/assets/client-images/product-1.png"
+                    src={product.imageUrl}
                     alt="6000 từ vựng tiếng anh thông dụng (mềm)"
                   />
                 </a>

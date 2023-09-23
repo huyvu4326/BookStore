@@ -46,7 +46,6 @@ const EditBook = (props: Props) => {
       promotionalPrice: data.promotionalPrice,
       description: data.description,
     };
-
     if (data.newImg[0]) {
       const formData = new FormData();
       formData.append('image', data.newImg[0]); 
@@ -66,7 +65,6 @@ const EditBook = (props: Props) => {
         return;
       }
     }
-
     updateProduct(updatedProduct)
       .then((response) => {
         console.log('Sản phẩm đã được cập nhật:', response.data);

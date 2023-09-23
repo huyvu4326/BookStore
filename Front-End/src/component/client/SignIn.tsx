@@ -1,8 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../api/user";
+import { message } from "antd";
+import { useForm } from "react-hook-form";
 
 type Props = {};
 
 const SignIn = (props: Props) => {
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = async (values: any) => {
+    try {
+      const { data: user } = await login(values);
+      // const token = user.accessToken;
+      // localStorage.setItem("token", token);
+      localStorage.setItem('token', JSON.stringify(user.accessToken))
+      message.success("Đăng nhập thành công!", 2);
+        navigate("/admin")
+    } catch (error) {
+      message.error("Email hoặc mật khẩu không chính xác");
+    }
+  };
   return (
     <div>
       <section
@@ -21,13 +39,14 @@ const SignIn = (props: Props) => {
               >
                 <div className="card-body p-5 text-center">
                   <h3 className="mb-5">Sign in</h3>
-
+                  <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="form-outline mb-4">
                     <input
                       type="email"
                       id="typeEmailX-2"
                       className="form-control form-control-lg"
                       placeholder="Email"
+                      {...register("email")}
                     />
                     <label
                       className="form-label"
@@ -41,6 +60,7 @@ const SignIn = (props: Props) => {
                       id="typePasswordX-2"
                       className="form-control form-control-lg"
                       placeholder="Password"
+                      {...register("password")}
                     />
                     <label
                       className="form-label"
@@ -76,6 +96,8 @@ const SignIn = (props: Props) => {
                   >
                     Login
                   </button>
+                  </form>
+                  
 
                   <hr className="my-4" />
 
@@ -95,7 +117,7 @@ const SignIn = (props: Props) => {
                     facebook
                   </button>
                   <p className="mt-3">
-                    Bạn chưa có tài khoản? <a href="#">Đăng ký</a>
+                    Bạn chưa có tài khoản? <a href="signup">Đăng ký</a>
                   </p>
                 </div>
               </div>

@@ -4,5 +4,5 @@ export const signup = (user: IUser) => {
   return instance.post("/signup", user);
 };
 export const login = (user: IUser) => {
-  return instance.post("/login", user);
+  return instance.post("/signin", user);
 };

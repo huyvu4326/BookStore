@@ -1,8 +1,30 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { signup } from "../../api/user";
+import { message } from "antd";
 
 type Props = {};
 
 const SignUp = (props: Props) => {
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = async (values: any) => {
+    try {
+      const { data: user } = await signup(values);
+      // localStorage.setItem("token", JSON.stringify(user.accessToken));
+      navigate("/signin");
+      message.success("Đăng ký thành công!", 2);
+    } catch (error) {
+      if (error.response.data.message === "Email đã tồn tại") {
+        message.error("Email đã được sử dụng, vui lòng thử lại!", 2);
+      }
+      // } else {
+      //   message.error("Đăng ký không thành công, vui lòng thử lại!", 2);
+      // }
+    }
+  };
+  
   return (
     <div>
       <section
@@ -21,14 +43,14 @@ const SignUp = (props: Props) => {
                     <h2 className="text-uppercase text-center mb-5">
                       Create an account
                     </h2>
-
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="form-outline mb-4">
                         <input
                           type="text"
                           id="form3Example1cg"
                           className="form-control form-control-lg"
                           placeholder="Your Name"
+                          {...register("name")}
                         />
                         <label className="form-label" htmlFor="form3Example1cg">
                         </label>
@@ -40,6 +62,7 @@ const SignUp = (props: Props) => {
                           id="form3Example3cg"
                           className="form-control form-control-lg"
                           placeholder="Email"
+                          {...register("email")}
                         />
                         <label className="form-label" htmlFor="form3Example3cg">
                         </label>
@@ -51,6 +74,7 @@ const SignUp = (props: Props) => {
                           id="form3Example4cg"
                           className="form-control form-control-lg"
                           placeholder="Password"
+                          {...register("password")}
                         />
                         <label className="form-label" htmlFor="form3Example4cg">
                         </label>
@@ -62,6 +86,7 @@ const SignUp = (props: Props) => {
                           id="form3Example4cdg"
                           className="form-control form-control-lg"
                           placeholder="Repeat your password"
+                          {...register("confirmPassword")}
                         />
                         <label
                           className="form-label"
@@ -92,7 +117,7 @@ const SignUp = (props: Props) => {
 
                       <div className="d-flex justify-content-center">
                         <button
-                          type="button"
+                          type="submit"
                           className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
                         >
                           Register
@@ -101,7 +126,7 @@ const SignUp = (props: Props) => {
 
                       <p className="text-center text-muted mt-5 mb-0">
                         Have already an account?{" "}
-                        <a href="#!" className="fw-bold text-body">
+                        <a href="signin" className="fw-bold text-body">
                           <u>Login here</u>
                         </a>
                       </p>

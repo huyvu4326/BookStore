@@ -12,9 +12,13 @@ type Props = {};
 const AddBook = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (value) => {
-    addProduct({...value, imageUrl: uploadedImageUrl })
+    addProduct({ ...value, imageUrl: uploadedImageUrl })
       .then((response) => {
         navigate("/admin/list-book");
         message.success("Thêm sản phẩm thành công!");
@@ -28,8 +32,7 @@ const AddBook = () => {
       .then((response) => {
         setCategories(response.data);
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   }, []);
 
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
@@ -79,10 +82,17 @@ const AddBook = () => {
                       <label htmlFor="bookName">Tên sách:</label>{" "}
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.name ? "is-invalid" : ""
+                        }`}
                         id="bookName"
-                        {...register("name")}
+                        {...register("name", { required: true })}
                       />
+                      {errors.name && (
+                        <div className="invalid-feedback">
+                          Vui lòng nhập tên sách
+                        </div>
+                      )}
                     </div>
                     <div className="form-group">
                       <label htmlFor="bookCategory">Danh mục sách:</label>
@@ -106,14 +116,19 @@ const AddBook = () => {
                       <label htmlFor="bookAuthor">Tác giả:</label>{" "}
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.author ? "is-invalid" : ""
+                        }`}
                         id="bookAuthor"
-                        {...register("author")}
+                        {...register("author", {required: true})}
                       />
+                      {errors.author && (
+                        <div className="invalid-feedback">
+                          Vui lòng nhập tên tác giả
+                        </div>
+                      )}
                     </div>
-                    <div>
-                      
-                      <Dropzone onDrop={handleDrop} accept="image/*">
+                    <Dropzone onDrop={handleDrop} accept="image/*">
                         {({ getRootProps, getInputProps }) => (
                           <div {...getRootProps()} className="dropzone">
                             <input {...getInputProps()} />
@@ -127,34 +142,79 @@ const AddBook = () => {
                           </div>
                         )}
                       </Dropzone>
-                    </div>
+
                     <div className="form-group">
                       <label htmlFor="bookPrice">Giá gốc:</label>{" "}
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.originalPrice ? "is-invalid" : ""
+                        }`}
                         id="bookPrice"
-                        {...register("originalPrice")}
+                        {...register("originalPrice", {
+                          required: true,
+                          pattern: {
+                            value: /^\d+(\.\d{1,2})?$/,
+                            message: "Giá phải là số",
+                          },
+                        })}
                       />
+                      {errors.originalPrice && (
+                        <div className="invalid-feedback">
+                          {errors.originalPrice.message ||
+                            "Vui lòng nhập giá gốc"}
+                        </div>
+                      )}
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="bookPrice">Giá khuyến mại:</label>{" "}
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          errors.promotionalPrice ? "is-invalid" : ""
+                        }`}
                         id="bookPrice"
-                        {...register("promotionalPrice")}
+                        {...register("promotionalPrice", {
+                          required: true,
+                          pattern: {
+                            value: /^\d+(\.\d{1,2})?$/, // Accepts numbers with up to 2 decimal places
+                            message: "Vui lòng nhập số",
+                          },
+                        })}
                       />
+                      {errors.promotionalPrice && (
+                        <div className="invalid-feedback">
+                          {errors.promotionalPrice.message ||
+                            "Vui lòng nhập giá khuyến mại"}
+                        </div>
+                      )}
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="bookDescription">Nội dung:</label>{" "}
                       <textarea
-                        className="form-control"
+                        className={`form-control ${
+                          errors.description ? "is-invalid" : ""
+                        }`}
                         id="bookDescription"
                         rows={4}
-                        {...register("description")}
+                        {...register("description", {
+                          required: true,
+                          minLength: {
+                            value: 10,
+                            message: "Nội dung phải có ít nhất 10 ký tự.",
+                          },
+                        })}
                       ></textarea>{" "}
+                      {errors.description && (
+                        <div className="invalid-feedback">
+                          {errors.description.message ||
+                            "Vui lòng nhập nội dung sách"}
+                        </div>
+                      )}
                     </div>
+
                     <button type="submit" className="btn btn-primary">
                       Gửi
                     </button>

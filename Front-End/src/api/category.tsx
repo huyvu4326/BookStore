@@ -1,7 +1,7 @@
 import { ICategory } from "../interface/category";
 import instance from "./instance";
 
-const token=JSON.parse(localStorage.getItem("user")!).accessToken
+// const token=JSON.parse(localStorage.getItem("user")!).accessToken
 export const getCategories = () => {
   return instance.get("/categories");
 };
@@ -12,21 +12,21 @@ export const getCategoryById = (_id: number | string) => {
 export const addCategory = (category: ICategory) => {
   return instance.post("/categories", category, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization:`Bearer ${JSON.parse(localStorage.getItem('token')!)}`
     },
   });
 };
 export const updateCategory = (category: ICategory) => {
   return instance.patch(`/categories/${category._id}`, category, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization:`Bearer ${JSON.parse(localStorage.getItem('token')!)}`
     },
   });
 };
 export const deleteCategories = (_id: number | string) => {
   return instance.delete(`/categories/${_id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization:`Bearer ${JSON.parse(localStorage.getItem('token')!)}`
     },
   });
 };
