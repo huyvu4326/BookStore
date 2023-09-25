@@ -172,12 +172,7 @@ ul li {
     overflow: hidden;
     background: transparent;
     position: relative;
-}
-.search_kh .box_search_kh {
-    border: none;
-    overflow: hidden;
-    background: transparent;
-    position: relative;
+    /* padding-left: 250px; */
 }
 .search_kh button {
     height: 100%;
@@ -1379,6 +1374,7 @@ ul li {
     display: inline-flex;
     align-items: center;
     float: left;
+    padding-left: 170px;
 }
 .search_kh {
     display: inline-block;

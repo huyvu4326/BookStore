@@ -1,16 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/signin");
+  };
   return (
     <div>
       <div className="iq-sidebar">
         <div className="iq-sidebar-logo d-flex justify-content-between">
           <a href="admin-dashboard.html" className="header-logo">
-            <img
-              className="img-fluid rounded-normal"
-              alt=""
-            />
+            <img className="img-fluid rounded-normal" alt="" />
             <div className="logo-title">
               <span className="text-primary text-uppercase">BookStore</span>
             </div>
@@ -82,10 +92,7 @@ const Header = () => {
               </div>
               <div className="iq-navbar-logo d-flex justify-content-between">
                 <a href="index.html" className="header-logo">
-                  <img
-                    className="img-fluid rounded-normal"
-                    alt=""
-                  />
+                  <img className="img-fluid rounded-normal" alt="" />
                   <div className="logo-title">
                     <span className="text-primary text-uppercase">
                       NhasachTV
@@ -193,16 +200,17 @@ const Header = () => {
                     href="#"
                     className="search-toggle iq-waves-effect d-flex align-items-center"
                   >
-                    <img
-                      className="img-fluid rounded-circle mr-3"
-                      alt="user"
-                    />
                     <div className="caption">
-                      <h6 className="mb-1 line-height">Hà Huy Vũ</h6>
-                      <p className="mb-0 text-primary">Tài Khoản</p>
+                      {isLoggedIn ? (
+                        <button className="btn btn-primary" onClick={handleLogout} >Đăng xuất</button>
+                      ) : (
+                        <Link to="/signin" className="btn-sign_in">
+                          <button className="btn btn-primary">Đăng nhập</button>
+                        </Link>
+                      )}
                     </div>
                   </a>
-                  <div className="iq-sub-dropdown iq-user-dropdown">
+                  {/* <div className="iq-sub-dropdown iq-user-dropdown">
                     <div className="iq-card shadow-none m-0">
                       <div className="iq-card-body p-0 ">
                         <div className="bg-primary p-3">
@@ -273,7 +281,7 @@ const Header = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </li>
               </ul>
             </div>

@@ -15,9 +15,11 @@ import Sidebar from "./component/client/Sidebar";
 import ProductList from "./component/client/ProductList";
 import Cart from "./component/client/Cart";
 import CateBook from "./component/client/CateBook";
-import SignIn from "./component/client/SignIn";
-import SignUp from "./component/client/SignUp";
+import SignIn from "./component/user/SignIn";
+import SignUp from "./component/user/SignUp";
 import ProductDetail from "./component/client/ProductDetail";
+import ForgotPassword from "./component/user/forgotPassword";
+import ResetPassword from "./component/user/resetPassword";
 
 export const router = createBrowserRouter ([
     {
@@ -27,6 +29,14 @@ export const router = createBrowserRouter ([
     {
         path: "/signup",
         element: <SignUp/>
+    },
+    {
+        path: '/forgotPassword',
+        element: <ForgotPassword/>
+    },
+    {
+        path: '/resetPassword',
+        element: <ResetPassword/>
     },
     {
         path: "/",

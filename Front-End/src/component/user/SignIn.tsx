@@ -12,11 +12,13 @@ const SignIn = (props: Props) => {
   const onSubmit = async (values: any) => {
     try {
       const { data: user } = await login(values);
-      // const token = user.accessToken;
-      // localStorage.setItem("token", token);
-      localStorage.setItem('token', JSON.stringify(user.accessToken))
+      localStorage.setItem("token", JSON.stringify(user.accessToken));
       message.success("Đăng nhập thành công!", 2);
-        navigate("/admin")
+      if (user.role === "admin") {
+        navigate("admin");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       message.error("Email hoặc mật khẩu không chính xác");
     }
@@ -40,64 +42,63 @@ const SignIn = (props: Props) => {
                 <div className="card-body p-5 text-center">
                   <h3 className="mb-5">Sign in</h3>
                   <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="form-outline mb-4">
-                    <input
-                      type="email"
-                      id="typeEmailX-2"
-                      className="form-control form-control-lg"
-                      placeholder="Email"
-                      {...register("email")}
-                    />
-                    <label
-                      className="form-label"
-                      htmlFor="typeEmailX-2"
-                    ></label>
-                  </div>
-
-                  <div className="form-outline mb-4">
-                    <input
-                      type="password"
-                      id="typePasswordX-2"
-                      className="form-control form-control-lg"
-                      placeholder="Password"
-                      {...register("password")}
-                    />
-                    <label
-                      className="form-label"
-                      htmlFor="typePasswordX-2"
-                    ></label>
-                  </div>
-
-                  {/* <!-- Checkbox --> */}
-                  <div className="form-check d-flex justify-content-between align-items-center mb-4">
-                    <div>
+                    <div className="form-outline mb-4">
                       <input
-                        className="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="form1Example3"
+                        type="email"
+                        id="typeEmailX-2"
+                        className="form-control form-control-lg"
+                        placeholder="Email"
+                        {...register("email")}
                       />
                       <label
-                        className="form-check-label"
-                        htmlFor="form1Example3"
-                      >
-                        {" "}
-                        Remember password{" "}
-                      </label>
+                        className="form-label"
+                        htmlFor="typeEmailX-2"
+                      ></label>
                     </div>
-                    <p className="mt-0">
-                      <a href="#">Forgot password</a>
-                    </p>
-                  </div>
 
-                  <button
-                    className="btn btn-primary btn-lg btn-block"
-                    type="submit"
-                  >
-                    Login
-                  </button>
+                    <div className="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="typePasswordX-2"
+                        className="form-control form-control-lg"
+                        placeholder="Password"
+                        {...register("password")}
+                      />
+                      <label
+                        className="form-label"
+                        htmlFor="typePasswordX-2"
+                      ></label>
+                    </div>
+
+                    {/* <!-- Checkbox --> */}
+                    <div className="form-check d-flex justify-content-between align-items-center mb-4">
+                      <div>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="form1Example3"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="form1Example3"
+                        >
+                          {" "}
+                          Remember password{" "}
+                        </label>
+                      </div>
+                      <p className="mt-0">
+                        <a href="#">Forgot password</a>
+                      </p>
+                    </div>
+
+                    <button
+                      className="btn btn-primary btn-lg btn-block"
+                      type="submit"
+                    >
+                      Login
+                    </button>
                   </form>
-                  
 
                   <hr className="my-4" />
 

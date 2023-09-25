@@ -1,9 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // kiểm tra token có tồn tại hay không
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false); // đăng xuất
+    navigate("/signin");
+  };
   return (
     <div>
       <div className="header-top">
@@ -48,9 +61,10 @@ const Header = (props: Props) => {
           </div>
           <ul className="icon-navbar">
             <li className="link-mxh">
-              <a className="box-cart" >
-                
-                <Link to="cart"><i className="fas fa-shopping-cart" aria-hidden="true"></i></Link>
+              <a className="box-cart">
+                <Link to="cart">
+                  <i className="fas fa-shopping-cart" aria-hidden="true"></i>
+                </Link>
                 <p className="count-cart cart"> 0 </p>
               </a>
             </li>
@@ -77,9 +91,13 @@ const Header = (props: Props) => {
               </div>
             </div>
             <li className="link_sign_in">
-              <a className="btn-sign_in">
-                <i className="fas fa-user" aria-hidden="true"></i>
-              </a>
+              {isLoggedIn ? (
+                <button className="btn btn-primary" onClick={handleLogout}>Đăng xuất</button>
+              ) : (
+                <Link to="/signin" className="btn-sign_in">
+                  <button className="btn btn-primary">Đăng nhập</button>
+                </Link>
+              )}
             </li>
           </ul>
         </div>

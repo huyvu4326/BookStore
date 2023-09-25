@@ -18,6 +18,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "member",
   },
+  passwordResetToken: {
+    type: String
+},
+  passwordResetExpires: {
+    type: String,
+  },
+  passwordChangeAt: {
+    type: String,
+  },
+}, {
+  timestamps: true,
+  versionKey: false
 });
 
 export default mongoose.model("User", userSchema);
