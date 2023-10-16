@@ -13,6 +13,7 @@ const SignIn = (props: Props) => {
     try {
       const { data: user } = await login(values);
       localStorage.setItem("token", JSON.stringify(user.accessToken));
+      localStorage.setItem("users", JSON.stringify(user));
       message.success("Đăng nhập thành công!", 2);
       if (user.role === "admin") {
         navigate("admin");
@@ -88,7 +89,7 @@ const SignIn = (props: Props) => {
                         </label>
                       </div>
                       <p className="mt-0">
-                        <a href="#">Forgot password</a>
+                        <a href="forgotPassword">Forgot password</a>
                       </p>
                     </div>
 

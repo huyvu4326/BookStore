@@ -6,7 +6,7 @@ import { message } from "antd";
 type Props = {};
 
 const ForgotPassword = (props: Props) => {
-    const { token } = useParams();
+    // const { token } = useParams();
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,10 +59,10 @@ const ForgotPassword = (props: Props) => {
             Reset password
           </button>
           <div className="d-flex justify-content-between mt-4">
-            <a className="" href="#">
+            <a className="" href="signin">
               Login
             </a>
-            <a className="" href="#">
+            <a className="" href="signup">
               Register
             </a>
           </div>

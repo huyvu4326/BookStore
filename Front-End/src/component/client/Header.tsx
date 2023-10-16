@@ -6,17 +6,28 @@ type Props = {};
 const Header = (props: Props) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token); // kiểm tra token có tồn tại hay không
   }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false); // đăng xuất
     navigate("/signin");
   };
+
+  const [userId, setUserId] = useState<string | null>(null); // Sử dụng useState để lưu ID người dùng
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // Kiểm tra token có tồn tại hay không
+    // Lấy ID người dùng từ localStorage (nếu có)
+    const accessToken = localStorage.getItem("users");
+    const userId = accessToken ? JSON.parse(accessToken).user._id : null;
+    setUserId(userId)
+    console.log(userId);
+  }, []);
+
   return (
     <div>
       <div className="header-top">
@@ -62,18 +73,17 @@ const Header = (props: Props) => {
           <ul className="icon-navbar">
             <li className="link-mxh">
               <a className="box-cart">
-                <Link to="cart">
+                <Link to={`${userId}/cart`}>
                   <i className="fas fa-shopping-cart" aria-hidden="true"></i>
                 </Link>
                 <p className="count-cart cart"> 0 </p>
               </a>
             </li>
-
             <div
               className="box-header-main-right h-cart"
               style={{ display: "none" }}
             >
-              <div className="list-product css-19k9yp8">
+              {/* <div className="list-product css-19k9yp8">
                 <div className="wrapper">
                   <div className="body">
                     <span>Chưa có sản phẩm trong giỏ hàng!!</span>
@@ -88,11 +98,13 @@ const Header = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <li className="link_sign_in">
               {isLoggedIn ? (
-                <button className="btn btn-primary" onClick={handleLogout}>Đăng xuất</button>
+                <button className="btn btn-primary" onClick={handleLogout}>
+                  Đăng xuất
+                </button>
               ) : (
                 <Link to="/signin" className="btn-sign_in">
                   <button className="btn btn-primary">Đăng nhập</button>

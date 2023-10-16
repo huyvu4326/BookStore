@@ -11,16 +11,16 @@ const ProductList = (props: Props) => {
       setProducts(response.data.docs);
     });
   }, []);
-  const addToCart = (product) => {
-    const updatedCart = [...cart];
-    const existingProduct = updatedCart.find((item) => item._id === product._id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      updatedCart.push({ ...product, quantity: 1 });
-    }
-    setCart(updatedCart);
-  };
+  // const addToCart = (product) => {
+  //   const updatedCart = [...cart];
+  //   const existingProduct = updatedCart.find((item) => item._id === product._id);
+  //   if (existingProduct) {
+  //     existingProduct.quantity += 1;
+  //   } else {
+  //     updatedCart.push({ ...product, quantity: 1 });
+  //   }
+  //   setCart(updatedCart);
+  // };
   return (
     <div>
       <div className="banner_home">
@@ -58,7 +58,7 @@ const ProductList = (props: Props) => {
                           {product.originalPrice}đ
                         </span>
                       </p>
-                      <button className="btn btn-primary" onClick={() => addToCart(product)}>Add to Cart</button>
+                      <button className="btn btn-primary">Add to Cart</button>
                     </div>
                   </div>
                 </div>

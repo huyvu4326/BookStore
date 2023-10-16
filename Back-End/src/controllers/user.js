@@ -1,79 +1,79 @@
 import User from "../models/user";
 import bcrypt from "bcryptjs";
-import { signupSchema, loginSchema } from "../schemas/user";
 import jwt from "jsonwebtoken";
 import crypto from "crypto-js";
 import nodemailer from "nodemailer";
-export const signup = async (req, res) => {
+
+export const getProfile = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const { error } = signupSchema.validate(req.body, { abortEarly: false });
-    if (error) {
-      const errors = error.details.map((err) => err.message);
-      return res.status(400).json({
-        message: errors.message,
-      });
-    }
-    const userExist = await User.findOne({ email });
-    if (userExist) {
-      return res.status(400).json({
-        message: "Email đã tồn tại",
-      });
-    }
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    user.password = undefined;
-    return res.status(200).json({
-      message: "Đăng ký thành công",
-      user,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-    });
+      const userLogger = req.user;
+      return res.status(200).json({
+          message: 'Lấy thông tin cá nhân thành công',
+          user: userLogger
+      })
   }
-};
-
-export const login = async (req, res) => {
+  catch (error) {
+      return res.status(400).json({
+          message: error.message
+      })
+  }
+}
+export const updateProfile = async (req, res) => {
+  const user = req.user
   try {
-    const { email, password } = req.body;
-    const { error } = loginSchema.validate(req.body, { abortEarly: false });
-    if (error) {
-      const errors = error.details.map((err) => err.message);
-      return res.status(400).json({
-        messages: errors.message,
-      });
-    }
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({
-        message: "Email không tồn tại",
-      });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({
-        message: "Mật khẩu không đúng",
-      });
-    }
-    const token = jwt.sign({ id: user._id }, "haHuyVu", { expiresIn: "1d" });
-    return res.status(200).json({
-      message: "Đăng nhập thành công",
-      accessToken: token,
-      user,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-    });
+      const userLogger = req.user;
+      const userUpdate = await User.findByIdAndUpdate(userLogger._id, req.body, {
+          new: true
+      })
+      const token = jwt.sign({ id: user._id }, "haHuyVu", {
+          expiresIn: '1d'
+      })
+      return res.status(200).json({
+          message: 'Cập nhập thông tin cá nhân thành công',
+          user: userUpdate,
+          token
+      })
   }
-};
+  catch (error) {
+      return res.status(400).json({
+          message: error.message
+      })
+  }
+}
+export const updatePassword = async (req, res) => {
+  try {
+      const user = req.user;
+      const isMatch = await bcrypt.compare(req.body.currentPassword, user.password)
+      if (!isMatch) {
+          return res.status(400).json({
+              message: "Mật khẩu hiện tại không đúng"
+          })
+      }
+      const token = jwt.sign({ id: user._id }, "haHuyVu", {
+          expiresIn: '1d'
+      })
+      const hashPassword = await bcrypt.hash(req.body.newPassword, 10)
+      const newUser = await User.findByIdAndUpdate(user._id, {
+          password: hashPassword,
+          passwordChangeAt: Date.now()
+      }, {
+          new: true
+      })
+      user.password = undefined
+      return res.status(200).json({
+          message: "Đổi mật khẩu thành công",
+          newUser,
+          token
+      })
+  }
+  catch (error) {
+      return res.status(400).json({
+          message: error.message
+      })
+  }
+
+}
+
 export const forgotPassword = async (req, res) => {
   try {
       const email = req.body.email
@@ -94,12 +94,12 @@ export const forgotPassword = async (req, res) => {
           },
           service: 'gmail',
             auth: {
-                user: 'tranngocdong2042003@gmail.com',
-                pass: 'kaivhxsscgiuiosp'
+                user: 'havu6544@gmail.com',
+                pass: 'nfiz ucuh kmps vkde'
             }
       });
       const mailOptions = {
-          from: 'tranngocdong2042003@gmail.com',
+          from: 'havu6544@gmail.com',
           to: req.body.email,
           subject: 'FORGOT PASSWORD',
           text: message

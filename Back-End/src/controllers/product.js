@@ -21,7 +21,6 @@ export const getAll = async (req, res) => {
             [_sort]: _order == "desc" ? -1 : 1,
         },
     };
-
     try {
         const data = await Product.paginate({}, options);
 

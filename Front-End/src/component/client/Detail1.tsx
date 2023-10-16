@@ -1,36 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../api/book";
+import { addItemCart } from "../../api/cart";
 
 type Props = {};
 
-const Detail_1 = (props: Props) => {
+const Detail_1 = (e) => {
   const { id } = useParams();
   const [product, setProduct] = useState<any>({}); // Thay any bằng kiểu dữ liệu thích hợp
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(product.promotionalPrice);
-
+  // const [cartId, setCartId] = useState("");
   useEffect(() => {
     getProductById(id).then((response) => {
       setProduct(response.data);
-      setTotalPrice(response.data.promotionalPrice * quantity);
     });
   }, [id, quantity]);
 
   const increaseQuantity = () => {
     if (quantity < 999) {
       setQuantity(quantity + 1);
-      setTotalPrice((quantity + 1) * product.promotionalPrice);
     }
   };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
-      setTotalPrice((quantity - 1) * product.promotionalPrice);
     }
   };
 
+  const addToCart = () => {
+    // Tạo đối tượng sản phẩm mới với thông tin sản phẩm hiện tại và số lượng
+    const itemNew = {
+      productId: product.id,
+      imageUrl: product.imageUrl,
+      name: product.name,
+      promotionalPrice: product.promotionalPrice,
+      originalPrice: product.originalPrice,
+      author: product.author,
+      quantity: quantity,
+    };
+
+    // Gọi hàm để thêm sản phẩm vào giỏ hàng
+    addItemCart(itemNew)
+      .then((response) => {
+        // Xử lý sau khi thêm sản phẩm vào giỏ hàng thành công (ví dụ: thông báo)
+        console.log("Sản phẩm đã được thêm vào giỏ hàng");
+      })
+      .catch((error) => {
+        // Xử lý khi có lỗi (ví dụ: hiển thị thông báo lỗi)
+        console.error("Lỗi khi thêm sản phẩm vào giỏ hàng", error);
+      });
+  };
   return (
     <div>
       <div className="section_4">
@@ -58,7 +78,6 @@ const Detail_1 = (props: Props) => {
                           className="expandedImg"
                           id="imageid"
                           src={product.imageUrl}
-                          // alt="6000 từ vựng tiếng anh thông dụng (mềm)"
                         />
                       </a>
                     </div>
@@ -93,8 +112,7 @@ const Detail_1 = (props: Props) => {
                         href="/tac-gia/nguyen-thi-thu-hue-1695.html"
                         title="Bùi Văn Vinh (chủ biên) - Thái Vân Anh - Đỗ Thị Lan Anh - Nguyễn Thị Phương Anh"
                       >
-                        Bùi Văn Vinh (chủ biên) - Thái Vân Anh - Đỗ Thị Lan Anh
-                        - Nguyễn Thị Phương Anh
+                        {product.author}
                       </a>{" "}
                     </strong>
                   </p>
@@ -124,7 +142,7 @@ const Detail_1 = (props: Props) => {
                     </span>
                   </p>
                   <p>
-                    Giá bán: <span className="price_km">{totalPrice} ₫</span>
+                    Giá bán: <span className="price_km">{product.promotionalPrice} ₫</span>
                   </p>
 
                   <p>
@@ -325,24 +343,17 @@ const Detail_1 = (props: Props) => {
                     id="idsoluong"
                     value={quantity}
                     className="bd_book_no"
-                    fdprocessedid="4y7ipg"
+                    // fdprocessedid="4y7ipg"
                   />
                   <button onClick={increaseQuantity}>+</button>
                 </div>
                 <div className="bdetail_scart">
                   <button
-                    type="submit"
-                    className="single_add_to_cart_button"
-                    fdprocessedid="ffkxc"
+                    className="btn btn-checkout"
+                    // fdprocessedid="ffkxc"
+                    onClick={addToCart}
                   >
-                    <a
-                      className="btn btn_checkout add-to-cart"
-                      id="addCart"
-                      data-url="https://cus11.largevendor.com/cart/add/2?quantity=1"
-                      data-start="https://cus11.largevendor.com/cart/add/2"
-                    >
                       Thêm vào giỏ hàng
-                    </a>
                   </button>
                 </div>
               </div>

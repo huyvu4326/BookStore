@@ -3,6 +3,7 @@ import productRouter from "./routes/product";
 import userRouter from "./routes/user"
 import categoryRouter from "./routes/category"
 import authorRouter from "./routes/author"
+import cartRouter from "./routes/cart"
 import cors from "cors";
 import mongoose from "mongoose";
 
@@ -17,6 +18,7 @@ app.use("/api", productRouter);
 app.use("/api", categoryRouter);
 app.use("/api", userRouter);
 app.use("/api", authorRouter)
+app.use("/api", cartRouter)
 
 mongoose.connect("mongodb://127.0.0.1:27017/BookStore");
 

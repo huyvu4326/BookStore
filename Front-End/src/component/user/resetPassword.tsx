@@ -1,23 +1,24 @@
 import { message } from "antd";
 import React, { useState } from "react";
 import { resetPassword } from "../../api/user";
-import { useNavigate, useParams } from "react-router-dom";
-
-
-type Props = {};
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = (e) => {
-    const navigate = useNavigate();
-  const { token } = useParams();
+  const navigate = useNavigate();
+  const [token, setToken] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const handleNewPasswordChange = (e) => {
+  const handleTokenChange = (e) => {
+    setToken(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
   };
-  const handleSubmit = () => {
+  const onHandleSubmit = (e) => {
+    e.preventDefault()
     if (!token || !password || !confirmPassword) {
       message.error("Vui lòng điền đầy đủ thông tin.");
       return;
@@ -26,10 +27,10 @@ const ResetPassword = (e) => {
       message.error("Mật khẩu mới và xác nhận mật khẩu không khớp.");
       return;
     }
-    resetPassword(token,password)
+    resetPassword(token, password)
       .then((response) => {
         message.success("Mật khẩu mới đã được cập nhật.");
-        navigate("signin")
+        navigate("/signin");
       })
       .catch((error) => {
         message.error("Có lỗi xảy ra khi thay đổi mật khẩu.");
@@ -43,7 +44,7 @@ const ResetPassword = (e) => {
             <div className="card">
               <div className="card-header">Thay đổi mật khẩu</div>
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={onHandleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="newPassword" className="form-label">
                       Mã thay đổi
@@ -54,6 +55,7 @@ const ResetPassword = (e) => {
                       id="token"
                       placeholder="Nhập mã đổi mật khẩu"
                       value={token}
+                      onChange={handleTokenChange}
                     />
                   </div>
                   <div className="mb-3">
@@ -63,10 +65,10 @@ const ResetPassword = (e) => {
                     <input
                       type="password"
                       className="form-control"
-                      id="newPassword"
+                      id="password"
                       placeholder="Nhập mật khẩu mới"
                       value={password}
-                      onChange={handleNewPasswordChange}
+                      onChange={handlePasswordChange}
                     />
                   </div>
                   <div className="mb-3">
@@ -82,8 +84,8 @@ const ResetPassword = (e) => {
                       onChange={handleConfirmPasswordChange}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-                    Reset Password
+                  <button type="submit" className="btn btn-primary">
+                    Thay đổi mật khẩu
                   </button>
                 </form>
               </div>

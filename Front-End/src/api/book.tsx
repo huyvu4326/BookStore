@@ -1,7 +1,6 @@
 import { IBook } from "../interface/book";
 import instance from "./instance";
 
-// const token=JSON.parse(localStorage.getItem("token")!).accessToken
 export const getProducts = () => {
   return instance.get("/books");
 }
