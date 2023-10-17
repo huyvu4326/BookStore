@@ -1,8 +1,5 @@
-import React from 'react'
 
-type Props = {}
-
-const UserProfile = (props: Props) => {
+const UserProfile = () => {
   return (
     <div>
         <div className='container-md3'>
