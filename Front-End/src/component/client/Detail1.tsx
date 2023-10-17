@@ -326,7 +326,7 @@ const Detail_1 = (e) => {
                   <button
                     className="btn btn-checkout"
                     // fdprocessedid="ffkxc"
-                    onClick={addToCart}
+                  
                   >
                       Thêm vào giỏ hàng
                   </button>
