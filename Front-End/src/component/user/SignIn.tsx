@@ -12,10 +12,14 @@ const SignIn = (props: Props) => {
   const onSubmit = async (values: any) => {
     try {
       const { data: user } = await login(values);
+      console.log(user.role);
+      
       localStorage.setItem("token", JSON.stringify(user.accessToken));
       localStorage.setItem("users", JSON.stringify(user));
       message.success("Đăng nhập thành công!", 2);
       if (user.role === "admin") {
+
+        
         navigate("admin");
       } else {
         navigate("/");

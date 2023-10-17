@@ -5,22 +5,12 @@ type Props = {};
 
 const ProductList = (props: Props) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]); 
   useEffect(() => {
     getProducts().then((response) => {
       setProducts(response.data.docs);
     });
   }, []);
-  // const addToCart = (product) => {
-  //   const updatedCart = [...cart];
-  //   const existingProduct = updatedCart.find((item) => item._id === product._id);
-  //   if (existingProduct) {
-  //     existingProduct.quantity += 1;
-  //   } else {
-  //     updatedCart.push({ ...product, quantity: 1 });
-  //   }
-  //   setCart(updatedCart);
-  // };
+  
   return (
     <div>
       <div className="banner_home">

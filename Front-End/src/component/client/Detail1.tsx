@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../../api/book";
-import { addItemCart } from "../../api/cart";
+// import { addItemCart } from "../../api/cart";
 
 type Props = {};
 
@@ -9,7 +9,6 @@ const Detail_1 = (e) => {
   const { id } = useParams();
   const [product, setProduct] = useState<any>({}); // Thay any bằng kiểu dữ liệu thích hợp
   const [quantity, setQuantity] = useState(1);
-  // const [cartId, setCartId] = useState("");
   useEffect(() => {
     getProductById(id).then((response) => {
       setProduct(response.data);
@@ -26,30 +25,6 @@ const Detail_1 = (e) => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
-  };
-
-  const addToCart = () => {
-    // Tạo đối tượng sản phẩm mới với thông tin sản phẩm hiện tại và số lượng
-    const itemNew = {
-      productId: product.id,
-      imageUrl: product.imageUrl,
-      name: product.name,
-      promotionalPrice: product.promotionalPrice,
-      originalPrice: product.originalPrice,
-      author: product.author,
-      quantity: quantity,
-    };
-
-    // Gọi hàm để thêm sản phẩm vào giỏ hàng
-    addItemCart(itemNew)
-      .then((response) => {
-        // Xử lý sau khi thêm sản phẩm vào giỏ hàng thành công (ví dụ: thông báo)
-        console.log("Sản phẩm đã được thêm vào giỏ hàng");
-      })
-      .catch((error) => {
-        // Xử lý khi có lỗi (ví dụ: hiển thị thông báo lỗi)
-        console.error("Lỗi khi thêm sản phẩm vào giỏ hàng", error);
-      });
   };
   return (
     <div>

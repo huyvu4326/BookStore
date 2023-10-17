@@ -14,7 +14,7 @@ const Sidebar = (props: Props) => {
             <div className="body_seller">
               <div className="item-seller">
                 <p className="image">
-                  <a href="https://cus11.largevendor.com/anh-phai-song-in-theo-ban-cua-nxb-doi-nay-nam-1937">
+                  <a href="">
                     <img
                       src="/src/assets/client-images/anh-1.png"
                       alt="Anh phải sống (In theo bản của NXB Đời Nay , năm 1937)"
@@ -22,7 +22,7 @@ const Sidebar = (props: Props) => {
                   </a>
                 </p>
                 <p className="name">
-                  <a href="https://cus11.largevendor.com/anh-phai-song-in-theo-ban-cua-nxb-doi-nay-nam-1937">
+                  <a href="">
                     Anh phải sống (In theo bản của NXB Đời Nay , năm 1937)
                   </a>
                 </p>
@@ -36,7 +36,7 @@ const Sidebar = (props: Props) => {
             <div className="body_seller">
               <div className="item-seller">
                 <p className="image">
-                  <a href="https://cus11.largevendor.com/tieu-son-trang-si-in-theo-ban-cua-nxb-doi-nay-1940">
+                  <a href="">
                     <img
                       src="/src/assets/client-images/anh-2.png"
                       alt="Tiêu sơn tráng sĩ (In theo bản của NXB Đời Nay, 1940)"
@@ -44,7 +44,7 @@ const Sidebar = (props: Props) => {
                   </a>
                 </p>
                 <p className="name">
-                  <a href="https://cus11.largevendor.com/tieu-son-trang-si-in-theo-ban-cua-nxb-doi-nay-1940">
+                  <a href="">
                     Tiêu sơn tráng sĩ (In theo bản của NXB Đời Nay, 1940)
                   </a>
                 </p>
@@ -56,7 +56,7 @@ const Sidebar = (props: Props) => {
               </div>
             </div>
             <p className="see-all">
-              <a href="https://cus11.largevendor.com/sach-noi-bat">
+              <a href="">
                 Xem tất cả
               </a>
             </p>
@@ -68,7 +68,7 @@ const Sidebar = (props: Props) => {
             <div className="body_seller">
               <div className="item-seller">
                 <p className="image">
-                  <a href="https://cus11.largevendor.com/danh-tac-van-hoc-viet-nam-truyen-ngan-nhat-linh-bia-mem">
+                  <a href="">
                     <img
                       src="/src/assets/client-images/anh-3.png"
                       alt="Danh tác văn học việt nam - Truyện ngắn Nhất Linh (bìa mềm)"
@@ -76,7 +76,7 @@ const Sidebar = (props: Props) => {
                   </a>
                 </p>
                 <p className="name">
-                  <a href="https://cus11.largevendor.com/danh-tac-van-hoc-viet-nam-truyen-ngan-nhat-linh-bia-mem">
+                  <a href="">
                     Danh tác văn học việt nam - Truyện ngắn Nhất Linh (bìa mềm)
                   </a>
                 </p>
@@ -90,7 +90,7 @@ const Sidebar = (props: Props) => {
             <div className="body_seller">
               <div className="item-seller">
                 <p className="image">
-                  <a href="https://cus11.largevendor.com/danh-tac-van-hoc-viet-nam-hon-buom-mo-tien-bia-mem">
+                  <a href="">
                     <img
                       src="/src/assets/client-images/anh-4.png"
                       alt="Danh tác văn học Việt Nam - Hồn bướm mơ tiên (bìa mềm)"
@@ -98,7 +98,7 @@ const Sidebar = (props: Props) => {
                   </a>
                 </p>
                 <p className="name">
-                  <a href="https://cus11.largevendor.com/danh-tac-van-hoc-viet-nam-hon-buom-mo-tien-bia-mem">
+                  <a href="">
                     Danh tác văn học Việt Nam - Hồn bướm mơ tiên (bìa mềm)
                   </a>
                 </p>
@@ -112,7 +112,7 @@ const Sidebar = (props: Props) => {
             <div className="body_seller">
               <div className="item-seller">
                 <p className="image">
-                  <a href="https://cus11.largevendor.com/lanh-lung-in-theo-ban-nxb-doi-nay-ha-noi-1940">
+                  <a href="">
                     <img
                       src="/src/assets/client-images/anh-5.png"
                       alt="Lạnh lùng (In theo bản NXB Đời Nay, Hà Nội, 1940)"
@@ -120,7 +120,7 @@ const Sidebar = (props: Props) => {
                   </a>
                 </p>
                 <p className="name">
-                  <a href="https://cus11.largevendor.com/lanh-lung-in-theo-ban-nxb-doi-nay-ha-noi-1940">
+                  <a href="">
                     Lạnh lùng (In theo bản NXB Đời Nay, Hà Nội, 1940)
                   </a>
                 </p>
@@ -132,7 +132,7 @@ const Sidebar = (props: Props) => {
               </div>
             </div>
             <p className="see-all">
-              <a href="https://cus11.largevendor.com/sach-moi-phat-hanh">
+              <a href="">
                 Xem tất cả
               </a>
             </p>

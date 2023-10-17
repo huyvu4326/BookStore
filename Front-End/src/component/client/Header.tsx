@@ -25,7 +25,6 @@ const Header = (props: Props) => {
     const accessToken = localStorage.getItem("users");
     const userId = accessToken ? JSON.parse(accessToken).user._id : null;
     setUserId(userId)
-    console.log(userId);
   }, []);
 
   return (

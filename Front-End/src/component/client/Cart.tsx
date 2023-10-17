@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getCartOfUser } from "../../api/cart";
+
 
 type Props = {};
 
 const Cart = (props: Props) => {
-  const [cartItems, setCartItems] = useState([]); // State lưu trữ danh sách sản phẩm trong giỏ hàng
-
-  useEffect(() => {
-    const cartItemFromAPI = getCartOfUser();
-    setCartItems(cartItemFromAPI); 
-  }, []);
-  const handleRemoveFromCart = (productId) => {
-    // Cập nhật danh sách sản phẩm trong giỏ hàng sau khi xóa
-    // Ví dụ: const updatedCartItems = cartItems.filter(item => item.productId !== productId);
-    // setCartItems(updatedCartItems);
-  };
-
   return (
     <div>
       <section className="container">
