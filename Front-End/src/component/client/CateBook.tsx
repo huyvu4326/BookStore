@@ -44,7 +44,7 @@ const CateBook = (props: Props) => {
             <div className="list_pro">
               
                 {products?.map((product, index) => (
-                  <div className="item">
+                  <div className="item" key={product._id}>
                   <div className="box box-pro">
                   <div className="image">
                     <a href="">

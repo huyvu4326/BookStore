@@ -615,6 +615,9 @@ span.price-old {
     display: flex;
     width: 100%;
 }
+.info_left { 
+    width: 50%; 
+}
 .info_product_detail_main .info_left {
     width: 50%;
     padding: 0 15px;
@@ -642,6 +645,7 @@ span.price-old {
     font-size: 13px;
     margin-top: 10px;
 }
+
 .info_detail h1 {
     color: #333;
     font-size: 18px;
@@ -1898,11 +1902,13 @@ span.price-old {
     border: 1px solid #eee;
 }
 .info_left .image img {
-    width: 100%;
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
 }
 .info_detail {
     float: left;
-    width: 64%;
+    width: 50%;
     font-size: 13px;
     margin-top: 10px;
 }
@@ -2695,4 +2701,7 @@ button.single_add_to_cart_button {
   .form-resgiter {
     display: flex;
     justify-content: center;
+}
+@media screen (max-with: 992px) {
+    
 }

@@ -56,7 +56,7 @@ const ProductList = () => {
 					</div>
 				</div>
 			</div>
-			<div className="col-lg-9 col-md-9">
+			<div className="col-lg-9 col-md-9" style={{ maxWidth: '100%', width: '100%'}}>
 				<div className="list-sp-home">
 					<div className="title-list-sp-home">
 						<h3></h3>

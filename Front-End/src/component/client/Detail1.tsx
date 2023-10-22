@@ -79,7 +79,6 @@ const Detail_1 = () => {
 										<div className="image">
 											<a href="" data-fancybox="image">
 												<img
-													style={{ width: '400px', height: '500px' }}
 													className="expandedImg"
 													id="imageid"
 													src={product.imageUrl}

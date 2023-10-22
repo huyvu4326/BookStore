@@ -58,11 +58,6 @@ const Header = () => {
                   <i className="ri-record-circle-line"></i>Sách
                 </Link>
               </li>
-              <li>
-                <a href="sign-in.html">
-                  <i className="ri-record-circle-line"></i>Đăng Xuất
-                </a>
-              </li>
             </ul>
           </nav>
           <div id="sidebar-bottom" className="p-3 position-relative">
