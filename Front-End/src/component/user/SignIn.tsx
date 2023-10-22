@@ -9,25 +9,27 @@ type Props = {};
 const SignIn = (props: Props) => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (data: any) => {
     try {
-      const { data: user } = await login(values);
-      console.log(user.role);
-      
+      // const result = await login(values);
+      const {data : user} = await login(data);
       localStorage.setItem("token", JSON.stringify(user.accessToken));
-      localStorage.setItem("users", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
+      const accessToken = localStorage.getItem('user');
+      const role = accessToken ? JSON.parse(accessToken).user.role : null;
       message.success("Đăng nhập thành công!", 2);
-      if (user.role === "admin") {
-
-        
-        navigate("admin");
-      } else {
-        navigate("/");
-      }
-    } catch (error) {
+      console.log(role);
+      // // result.then( res => {
+        if (role === 'admin') {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+    }
+    catch (error) {
       message.error("Email hoặc mật khẩu không chính xác");
     }
-  };
+};
   return (
     <div>
       <section

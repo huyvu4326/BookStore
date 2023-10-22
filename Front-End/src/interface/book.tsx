@@ -2,7 +2,7 @@ export interface IBook {
     _id: number | string;
     name: string;
     price: number;
-    img: string,
+    imageUrl: string,
     categoryId: string,
     author: string,
     description: string,

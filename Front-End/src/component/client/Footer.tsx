@@ -9,7 +9,7 @@ const Footer = (props: Props) => {
       <footer className="grid items-center gap-8 pb-8 pt-6 md:py-8">
           <div className="logo-footer">
             <a href="/">
-              <img src="/src/assets/client-images/logo1.png" alt="Địa chỉ cuối trang" />
+              <img src="./src/assets/client-images/logo1.png" alt="Địa chỉ cuối trang" />
             </a>
           </div>
           <div className="footer-1">
