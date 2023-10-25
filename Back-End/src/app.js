@@ -20,6 +20,6 @@ app.use("/api", userRouter);
 app.use("/api", authorRouter)
 app.use("/api", cartRouter)
 
-mongoose.connect("mongodb://127.0.0.1:27017/BookStore");
+mongoose.connect("mongodb+srv://huyvu0831:huyvu4326@cluster0.9zsnlpl.mongodb.net/BookStoreretryWrites=true&w=majority");
 
 export const viteNodeApp = app;

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { IBook } from '../../interface/book';
+import { IBookV2 } from '../../interface/book';
 import axios from 'axios';
 import { getProducts } from '../../api/book';
 import { useNavigate } from 'react-router-dom';
 
 const ProductList = () => {
 	const navigate = useNavigate();
-	const [products, setProducts] = useState<IBook[]>([]);
-
+	const [products, setProducts] = useState<IBookV2[]>([]);
 	/* lấy tất cả các book */
 	useEffect(() => {
 		getProducts().then((response) => {
@@ -17,7 +16,7 @@ const ProductList = () => {
 	}, []);
 
 	/* theem vào giỏ hàng */
-	const handleAddToCart = async (book: IBook) => {
+	const handleAddToCart = async (book: IBookV2) => {
 		const data = {
 			productId: book._id,
 			imageUrl: book.imageUrl,
@@ -56,7 +55,7 @@ const ProductList = () => {
 					</div>
 				</div>
 			</div>
-			<div className="col-lg-9 col-md-9" style={{ maxWidth: '100%', width: '100%'}}>
+			<div className="col-lg-9 col-md-9" style={{ width: '100%', maxWidth: '100%'}}>
 				<div className="list-sp-home">
 					<div className="title-list-sp-home">
 						<h3></h3>

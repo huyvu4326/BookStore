@@ -24,7 +24,7 @@ const Header = (props: Props) => {
     // Lấy ID người dùng từ localStorage (nếu có)
     const accessToken = localStorage.getItem("users");
     const userId = accessToken ? JSON.parse(accessToken).user._id : null;
-    setUserId(userId);
+    setUserId(userId)
   }, []);
 
   return (
@@ -45,11 +45,14 @@ const Header = (props: Props) => {
                   type="text"
                   name="keyword"
                   placeholder="Bạn muốn tìm sản phẩm"
+                  // required=""
+                  // fdprocessedid="d883u"
                 />
                 <button
                   className="btn-search-color"
                   type="submit"
                   name="submit"
+                  // fdprocessedid="vtnjdm"
                 >
                   Tìm
                 </button>
@@ -79,6 +82,22 @@ const Header = (props: Props) => {
               className="box-header-main-right h-cart"
               style={{ display: "none" }}
             >
+              {/* <div className="list-product css-19k9yp8">
+                <div className="wrapper">
+                  <div className="body">
+                    <span>Chưa có sản phẩm trong giỏ hàng!!</span>
+                  </div>
+                  <div className="cart__bottom">
+                    <div className="cart__bottom-box">
+                      <a href="">
+                        <button type="button" className="cart__btn-more">
+                          <span>Mua sắm ngay</span>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
             </div>
             <li className="link_sign_in">
               {isLoggedIn ? (

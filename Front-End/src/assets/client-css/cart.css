@@ -1,197 +1,213 @@
 .container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 10rem;
-    padding-left: 10rem;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 10rem;
+	padding-left: 10rem;
 }
 
 .neext-step-box a {
-    text-decoration: none;
+	text-decoration: none;
 }
 .note-cart {
-    line-height: normal;
-    font-size: 15px;
-    font-style: italic;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
+	line-height: normal;
+	font-size: 15px;
+	font-style: italic;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
 }
 .note-cart span {
-    font-size: 35px;
-    font-style: normal;
+	font-size: 35px;
+	font-style: normal;
 }
 .note-cart .amount-pro {
-    font-size: 16px;
-    float: right;
-    line-height: 44px;
+	font-size: 16px;
+	float: right;
+	line-height: 44px;
 }
 
 .cart-main-item-box {
-    display: inline-block;
-    height: auto;
-    width: 100%;
-    margin-bottom: 30px;
-    border: 2px solid #eee;
-    border-radius: 0;
-    padding: 10px;
+	display: inline-block;
+	height: auto;
+	width: 100%;
+	margin-bottom: 30px;
+	border: 2px solid #eee;
+	border-radius: 0;
+	padding: 10px;
 }
 .cart-main-item {
-    display: flex;
+	display: flex;
+	width: 100%;
 }
 .cart-main-image-box {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 .cart-main-image img {
-    max-width: 200px;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 12px;
 }
 .cart-main-content {
-    width: calc(100% - 150px);
-    padding-left: 30px;
-    padding-right: 10px;
+	width: calc(100% - 150px);
+	padding-left: 30px;
+	padding-right: 10px;
 }
 .cart-main-content-title {
-    font-size: 20px;
-    font-weight: 500;
+	font-size: 20px;
+	font-weight: 500;
 }
 .cart-main-title {
-    display: inline-block;
-    float: left;
-    width: 50%;
+	display: inline-block;
+	float: left;
+	width: 50%;
 }
 .cart-main-content-price-box {
-    display: inline-block;
-    width: 50%;
-    text-align: right;
+	display: inline-block;
+	width: 50%;
+	text-align: right;
 }
 .cart-main-content-box-select-color-quantity {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
 }
 .quantity-cart-main {
-    display: inline-block;
+	display: inline-block;
 }
 .delete_all_item {
-    display: inline-block;
-    float: right;
-    text-decoration: underline;
-    margin-right: 15px;
+	display: inline-block;
+	float: right;
+	text-decoration: underline;
+	margin-right: 15px;
 }
 .cart-main-content-select-color {
-    /* text-align: center; */
-    margin-bottom: 10px;
+	/* text-align: center; */
+	margin-bottom: 10px;
 }
 
 hr {
-    margin-top: 1rem !important;
-    margin-bottom: 1rem !important;
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1);
+	margin-top: 1rem !important;
+	margin-bottom: 1rem !important;
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .number-cart-result {
-    width: 40px;
-    text-align: center;
-    line-height: 26px;
-    border: 1px solid;
+	width: 40px;
+	text-align: center;
+	line-height: 26px;
+	border: 1px solid;
 }
 label:not(.form-check-label):not(.custom-file-label) {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 35px;
-    height: 35px;
-    margin-bottom: 2px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 35px;
+	height: 35px;
+	margin-bottom: 2px;
 }
 .box-quantity-main {
-
-    height: 25px;
+	height: 25px;
 }
 .cart-main-content-box {
-    padding-top: 45px;
+	padding-top: 45px;
 }
-
-
-
 
 .section_cart .info-prod-cart-box {
-    border-left: 1px solid #dedede;
-    border-radius: 0;
-    margin-top: 75px;
-    background-color: #fff;
-    margin-left: -15px;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #ebebeb;
+	border-left: 1px solid #dedede;
+	border-radius: 0;
+	margin-top: 75px;
+	background-color: #fff;
+	margin-left: -15px;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: #ebebeb;
 }
 .info-cart-title {
-    /* text-align: center; */
-    font-size: 22px;
-    font-weight: 400;
-    /* text-transform: uppercase; */
-    margin-bottom: 30px;
+	/* text-align: center; */
+	font-size: 22px;
+	font-weight: 400;
+	/* text-transform: uppercase; */
+	margin-bottom: 30px;
 }
 .value-pro {
-    display: flex;
-    margin-bottom: 5px;
+	display: flex;
+	margin-bottom: 5px;
 }
 .value-pro {
-    display: flex;
-    margin-bottom: 5px;
+	display: flex;
+	margin-bottom: 5px;
 }
 .neext-step-box {
-    text-align: center;
-    margin-top: 5px;
+	text-align: center;
+	margin-top: 5px;
 }
 .sp-pay-box {
-    margin: 50px 0 10px;
+	margin: 50px 0 10px;
 }
 .value-pro .label {
-    font-size: 17px;
-    width: 50%;
+	font-size: 17px;
+	width: 50%;
 }
 .price-value.last-value {
-    font-size: 25px;
-       text-align: right;
-       width: 50%;
+	font-size: 25px;
+	text-align: right;
+	width: 50%;
 }
 
 .value-pro .label {
-    font-size: 17px;
-    width: 50%;
+	font-size: 17px;
+	width: 50%;
 }
 .value-pro .price-value {
-    text-align: right;
-    width: 50%;
+	text-align: right;
+	width: 50%;
 }
 .neext-step-box a {
-    font-size: 28px;
-    padding: 20px 15px;
-    border-radius: 8px;
-    background-color: rgb(233 62 62);
-    color: #ffffff !important;
-    border-radius: 0;
-    display: block;
-    width: 100%;
+	font-size: 28px;
+	padding: 20px 15px;
+	border-radius: 8px;
+	background-color: rgb(233 62 62);
+	color: #ffffff !important;
+	border-radius: 0;
+	display: block;
+	width: 100%;
 }
 .sp-pay-title {
-    font-size: 21px;
-    font-weight: 600;
-    margin-bottom: 7px;
+	font-size: 21px;
+	font-weight: 600;
+	margin-bottom: 7px;
 }
-.sp-pay-box ul>li {
-    padding-left: 20px;
-    font-size: 16px;
-    position: relative;
+.sp-pay-box ul > li {
+	padding-left: 20px;
+	font-size: 16px;
+	position: relative;
 }
-.sp-pay-box ul>li::before {
-    position: absolute;
-    content: "";
-    width: 10px;
-    height: 10px;
-    top: 6px;
-    left: 3px;
-    background-image: url(images/cart-01.png);
-    background-size: cover;
-    z-index: 1;
+.sp-pay-box ul > li::before {
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	top: 6px;
+	left: 3px;
+	background-image: url(images/cart-01.png);
+	background-size: cover;
+	z-index: 1;
+}
+
+.cart-main-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+}
+
+.cart-main-controller {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	gap: 2px;
 }

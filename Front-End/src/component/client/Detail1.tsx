@@ -1,14 +1,14 @@
-import { ICartBody } from '../../interface/cart';
+import { ICartBody, ICartResponse } from '../../interface/cart';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { IBook } from '../../interface/book';
-import { getProductById } from '../../api/book';
+import { IBookV2 } from '../../interface/book';
 import { addCart } from '../../api/cart';
+import { getProductById } from '../../api/book';
 
 const Detail_1 = () => {
 	const { id } = useParams();
-	const [product, setProduct] = useState<IBook>({} as IBook); // Thay any bằng kiểu dữ liệu thích hợp
+	const [product, setProduct] = useState<IBookV2>({} as IBookV2); // Thay any bằng kiểu dữ liệu thích hợp
 	const [quantity, setQuantity] = useState(1);
 	const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const Detail_1 = () => {
 	};
 
 	/* thêm giở hàng */
-	const handleAddToCart = async (book: IBook) => {
+	const handleAddToCart = async (book: IBookV2) => {
 		const data = {
 			productId: book._id,
 			imageUrl: book.imageUrl,
@@ -79,6 +79,7 @@ const Detail_1 = () => {
 										<div className="image">
 											<a href="" data-fancybox="image">
 												<img
+													style={{ width: '500px', height: '500px' }}
 													className="expandedImg"
 													id="imageid"
 													src={product.imageUrl}

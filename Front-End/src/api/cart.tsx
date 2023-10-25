@@ -1,4 +1,4 @@
-import { ICartBody } from '../interface/cart';
+import { ICart, ICartBody, ICartResponse } from '../interface/cart';
 
 import instance from './instance';
 

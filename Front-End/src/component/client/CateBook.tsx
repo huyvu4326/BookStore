@@ -1,15 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../api/book";
+import { useNavigate } from "react-router-dom";
+import { IBookV2 } from "../../interface/book";
+import axios from "axios";
 
 type Props = {};
 
 const CateBook = (props: Props) => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    getProducts().then((response) => {
-      setProducts(response.data.docs);
-    });
-  }, []);
+  const navigate = useNavigate();
+	const [products, setProducts] = useState<IBookV2[]>([]);
+	/* lấy tất cả các book */
+	useEffect(() => {
+		getProducts().then((response) => {
+			setProducts(response.data.docs);
+		});
+	}, []);
+
+	/* theem vào giỏ hàng */
+	const handleAddToCart = async (book: IBookV2) => {
+		const data = {
+			productId: book._id,
+			imageUrl: book.imageUrl,
+			name: book.name,
+			author: book.author,
+			originalPrice: book.originalPrice,
+			promotionalPrice: book.promotionalPrice,
+			quantity: 1,
+		};
+		const user = JSON.parse(localStorage.getItem('users') || '{}');
+		if (!user) {
+			navigate('/signin');
+		}
+		const cart = {
+			userId: user.user._id,
+			items: [data],
+		};
+		try {
+			const response = await axios.post('http://localhost:8080/api/cart', cart);
+			if (response.status === 200) {
+				navigate(`/${user.user._id}/cart`);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
   return (
     <div>
       <div className="section_product_hot">
@@ -44,7 +78,7 @@ const CateBook = (props: Props) => {
             <div className="list_pro">
               
                 {products?.map((product, index) => (
-                  <div className="item" key={product._id}>
+                  <div className="item">
                   <div className="box box-pro">
                   <div className="image">
                     <a href="">
@@ -62,11 +96,8 @@ const CateBook = (props: Props) => {
                       <span className="price-new">{product.promotionalPrice}đ</span>
                     </div>
                     <div className="buy-60-0">
-                      <button type="submit" className="buy-now">
-                        <a href="" className="add-to-cart">
-                          {" "}
-                          Thêm vào giỏ hàng{" "}
-                        </a>
+                      <button type="submit" className="buy-now" onClick={() => handleAddToCart(product)}>
+                        Thêm vào giỏ hàng
                       </button>
                     </div>
                   </div>

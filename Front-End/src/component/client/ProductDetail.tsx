@@ -1,16 +1,13 @@
-import React from 'react'
-import Detail_1 from './detail1'
-import Comment from './Comment'
+import Comment from './Comment';
+import Detail_1 from './Detail1';
 
-type Props = {}
+const ProductDetail = () => {
+	return (
+		<div>
+			<Detail_1 />
+			<Comment />
+		</div>
+	);
+};
 
-const ProductDetail = (props: Props) => {
-  return (
-    <div>
-        <Detail_1/>
-        <Comment/>
-    </div>
-  )
-}
-
-export default ProductDetail
+export default ProductDetail;
