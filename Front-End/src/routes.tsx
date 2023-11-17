@@ -1,17 +1,14 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import AddAuthor from './component/admin/author/AddAuthor';
 import AddBook from './component/admin/book/AddBook';
 import AddCate from './component/admin/cate-book/AddCate';
 import AdminLayout from './component/admin/AdminLayout';
 import Cart from './component/client/Cart';
 import CateBook from './component/client/CateBook';
 import Dashboard from './component/admin/Dashboard';
-import EditAuthor from './component/admin/author/EditAuthor';
 import EditBook from './component/admin/book/EditBook';
 import EditCate from './component/admin/cate-book/EditCate';
 import ForgotPassword from './component/user/forgotPassword';
-import ListAuthor from './component/admin/author/ListAuthor';
 import ListBook from './component/admin/book/ListBook';
 import ListCate from './component/admin/cate-book/ListCate';
 import ProductDetail from './component/client/ProductDetail';
@@ -114,18 +111,6 @@ export const router = createBrowserRouter([
 			{
 				path: ':id/edit-cate',
 				element: <AdminRoute element={<EditCate />} />,
-			},
-			{
-				path: 'list-author',
-				element: <AdminRoute element={<ListAuthor />} />,
-			},
-			{
-				path: 'add-author',
-				element: <AdminRoute element={<AddAuthor />} />,
-			},
-			{
-				path: 'edit-author/:id',
-				element: <AdminRoute element={<EditAuthor />} />,
 			},
 		],
 	},

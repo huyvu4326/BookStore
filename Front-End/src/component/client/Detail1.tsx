@@ -39,7 +39,6 @@ const Detail_1 = () => {
 			name: book.name,
 			author: book.author,
 			originalPrice: book.originalPrice,
-			promotionalPrice: book.promotionalPrice,
 			quantity,
 		};
 		const user = JSON.parse(localStorage.getItem('users') || '{}');
@@ -111,15 +110,7 @@ const Detail_1 = () => {
 							<div className="item-row1">
 								<div className="item_left">
 									<p>
-										Tác giả:{' '}
-										<strong>
-											<a
-												href="/tac-gia/nguyen-thi-thu-hue-1695.html"
-												title="Bùi Văn Vinh (chủ biên) - Thái Vân Anh - Đỗ Thị Lan Anh - Nguyễn Thị Phương Anh"
-											>
-												{product.author}
-											</a>{' '}
-										</strong>
+										Tác giả: <strong>{product.author}</strong>
 									</p>
 
 									<div className="rating">
@@ -135,10 +126,7 @@ const Detail_1 = () => {
 										</div>
 									</div>
 									<p>
-										Giá bìa: <span className="price_cost">{product.originalPrice} ₫</span>
-									</p>
-									<p>
-										Giá bán: <span className="price_km">{product.promotionalPrice} ₫</span>
+										Giá bán: <span className="price_km">{product.originalPrice} ₫</span>
 									</p>
 
 									<p>

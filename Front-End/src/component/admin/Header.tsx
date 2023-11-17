@@ -49,11 +49,6 @@ const Header = () => {
                 </a>
               </li>
               <li>
-                <Link to="list-author">
-                  <i className="ri-record-circle-line"></i>Tác Giả
-                </Link>
-              </li>
-              <li>
                 <Link to="list-book">
                   <i className="ri-record-circle-line"></i>Sách
                 </Link>

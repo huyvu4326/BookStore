@@ -23,7 +23,6 @@ const ProductList = () => {
 			name: book.name,
 			author: book.author,
 			originalPrice: book.originalPrice,
-			promotionalPrice: book.promotionalPrice,
 			quantity: 1,
 		};
 		const user = JSON.parse(localStorage.getItem('users') || '{}');
@@ -73,7 +72,7 @@ const ProductList = () => {
 										</div>
 										<div className="add-cart">
 											<p className="price-new">
-												{product.promotionalPrice}đ<span className="price-old">{product.originalPrice}đ</span>
+												{product.originalPrice}đ
 											</p>
 											<button className="btn btn-primary" onClick={() => handleAddToCart(product)}>
 												Add to Cart

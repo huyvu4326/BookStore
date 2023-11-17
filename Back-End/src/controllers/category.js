@@ -4,10 +4,7 @@ import Category from "../models/category";
 
 const categorySchema = Joi.object({
   name: Joi.string().required(),
-  description: Joi.string().required(),
 });
-
-
 export const getAll = async (req, res) => {
   try {
     const data = await Category.find().populate("products")
@@ -29,7 +26,6 @@ export const get = async (req, res) => {
         message: "Không có danh mục",
       });
     }
-    // const products = await Product.find({categoryID: id});
     return res.status(200).json(category);
   } catch (error) {
     return res.status(400).json({

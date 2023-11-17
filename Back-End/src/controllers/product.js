@@ -9,7 +9,7 @@ const productSchema = Joi.object({
     author: Joi.string().required(),
     description: Joi.string().required(),
     originalPrice: Joi.number().required(),
-    promotionalPrice: Joi.number().required(),
+    // promotionalPrice: Joi.number().required(),
 });
 
 export const getAll = async (req, res) => {

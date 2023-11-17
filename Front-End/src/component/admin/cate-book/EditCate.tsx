@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getCategoryById, updateCategory } from '../../../api/category';
 import { ICategory } from '../../../interface/category';
 import { useForm } from 'react-hook-form';
+import { message } from 'antd';
 
 type Props = {}
 
@@ -30,7 +31,7 @@ const EditCate = (props: Props) => {
      };
      updateCategory(update)
        .then((response) => {
-         console.log("Danh mục đã được cập nhật:", response.data);
+         message.success("Danh mục đã được cập nhật");
        })
        .catch((error) => {
          console.error("Lỗi khi cập nhật danh mục:", error);
@@ -53,10 +54,6 @@ const EditCate = (props: Props) => {
                     <div className="form-group">
                       <label>Tên danh mục:</label>
                       <input type="text" className="form-control" {...register('name')}/>
-                    </div>
-                    <div className="form-group">
-                      <label>Nội dụng:</label>
-                      <textarea className="form-control" rows={4} {...register('description')}></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary">
                       Gửi

@@ -27,7 +27,6 @@ const EditBook = (props: Props) => {
         setValue('author', response.data.author);
         setValue('img', response.data.imageUrl);
         setValue('originalPrice', response.data.originalPrice);
-        setValue('promotionalPrice', response.data.promotionalPrice);
         setValue('description', response.data.description);
       })
       .catch((error) => {
@@ -43,7 +42,6 @@ const EditBook = (props: Props) => {
       author: data.author,
       img: data.imageUrl,
       originalPrice: data.originalPrice,
-      promotionalPrice: data.promotionalPrice,
       description: data.description,
     };
     if (data.newImg[0]) {
@@ -139,15 +137,7 @@ const EditBook = (props: Props) => {
                       <label htmlFor="bookPrice">Giá gốc:</label>
                       <input type="text" className="form-control" id="bookPrice" {...register('originalPrice')} />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="bookPrice">Giá khuyến mãi:</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="bookPrice"
-                        {...register('promotionalPrice')}
-                      />
-                    </div>
+                    
                     <div className="form-group">
                       <label htmlFor="bookDescription">Nội dung:</label>
                       <textarea

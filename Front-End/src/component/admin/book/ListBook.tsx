@@ -58,7 +58,6 @@ const ListBook = (props: Props) => {
                           <th style={{ width: "15%" }}>Tác giả sách</th>
                           <th style={{ width: "18%" }}>Mô tả sách</th>
                           <th style={{ width: "7%" }}>Giá gốc</th>
-                          <th style={{ width: "7%" }}>Giá khuyến mại</th>
                           <th style={{ width: "15%" }}>Hoạt động</th>
                         </tr>
                       </thead>
@@ -82,7 +81,6 @@ const ListBook = (props: Props) => {
                              </p>
                            </td>
                            <td>{product.originalPrice}</td>
-                           <td>{product.promotionalPrice}</td>
                            <td>
                              <div className="flex align-items-center list-user-action">
                                <a

@@ -167,29 +167,7 @@ const AddBook = () => {
                       )}
                     </div>
 
-                    <div className="form-group">
-                      <label htmlFor="bookPrice">Giá khuyến mại:</label>{" "}
-                      <input
-                        type="text"
-                        className={`form-control ${
-                          errors.promotionalPrice ? "is-invalid" : ""
-                        }`}
-                        id="bookPrice"
-                        {...register("promotionalPrice", {
-                          required: true,
-                          pattern: {
-                            value: /^\d+(\.\d{1,2})?$/, // Accepts numbers with up to 2 decimal places
-                            message: "Vui lòng nhập số",
-                          },
-                        })}
-                      />
-                      {errors.promotionalPrice && (
-                        <div className="invalid-feedback">
-                          {errors.promotionalPrice.message ||
-                            "Vui lòng nhập giá khuyến mại"}
-                        </div>
-                      )}
-                    </div>
+                  
 
                     <div className="form-group">
                       <label htmlFor="bookDescription">Nội dung:</label>{" "}

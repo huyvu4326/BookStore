@@ -27,10 +27,6 @@ const productSchema = mongoose.Schema(
       type: String,
       require: true
     },
-    promotionalPrice: {
-      type: String,
-      require: true
-    }
   },
   { timestamps: true, versionKey: false }
 );
